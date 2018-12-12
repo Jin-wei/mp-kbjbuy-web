@@ -1,0 +1,139 @@
+<div >
+    <div class="header-fixed">
+        <!--=== Header v5 ===-->
+        <div style="height: 106px;width: 100%" ng-show="!isMobile"></div>
+        <div class="header-v5 float-header">
+            <!-- Topbar v3 -->
+            <div class="topbar-v3" >
+                <div class="container">
+                    <div class="row">
+                        <div ng-show="!isMobile" class="col-sm-4" style="padding-left: 0">
+                            <ul class="list-inline right-topbar pull-right">
+                                <li>
+                                    {{"header-left-title" | translate}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="{{isMobile?'col-sm-12':'col-sm-8'}}">
+                            <ul class="list-inline right-topbar pull-right" >
+                                <li>
+                                    <p ng-if="!isLogin &&!isMobile" style="margin-bottom: 0px"><a ng-href="indexApp.html#/login">登录</a> | <a ng-href="indexApp.html#/register">注册</a></p>
+                                </li>
+                                <li ng-if="isLogin && !isMobile"><a ng-bind="userName"></span></a></li>
+                                <li ng-if="isLogin && !isMobile"><button ng-click="logOut()" style="background: none;border: none">| &nbsp;&nbsp;&nbsp;退&nbsp;出</button></li>
+                                <!--<li><a href="#/serviceRegulation">使用协议</a></li>-->
+                                <!--<li><a href="#/aboutUs">关于我们</a></li>-->
+                                <li><a href="">{{'header-right-service' | translate}}</a></li>
+                                <li ng-if="isLogin && !isMobile"><a href="indexApp.html#/changePhone">修改手机号</a></li>
+                                <li ng-show="!isMobile"><a href="indexApp.html#/my_orders">我的订单</a></li>
+                                <li ng-show="!isMobile"><a href="indexApp.html#/my_collections">我的收藏</a></li>
+                                <li ng-show="isLogin && !isMobile"><a href="indexApp.html#/my_prodList">常用产品清单</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--/container-->
+            </div>
+            <!-- End Topbar v3 -->
+
+            <!-- Navbar -->
+            <div class="navbar navbar-default mega-menu" role="navigation" style="">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">
+                            <img ng-show="!isMobile" id="logo-header" ng-src="jjc/assets/images/logo2.png" style="height: 70px;width: 110px;margin-top:-14px" alt="Logo" >
+                            <img ng-show="isMobile" id="logo-header" ng-src="jjc/assets/images/logo2.png" style="height: 46px;width: 70px" alt="Logo" >
+                        </a>
+
+                        <div ng-if="isMobile" id="searchText" class="input-group" style="margin-top: 8px">
+                            <input id="searchInput" type="text" class="typeahead header-input form-control"  placeholder="{{'header-search-placeholder' | translate}}"  ng-model="mobileKeyword">
+                            <span class="input-group-btn header-btn">
+                                <button class="btn-u" type="button" ng-click="search()">搜索</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!--当在手机屏幕的时候显示购物车-->
+                    <!--<ul class="list-inline shop-badge badge-lists badge-icons pull-right shoppingcart">-->
+                        <!--<li>-->
+                            <!--<a href="/orderInfo"><i id="cart-iphone" class="fa fa-shopping-cart"></i></a>-->
+                            <!--<span class="badge badge-sea rounded-x" ng-if="allNum>0">{{allNum}}</span>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-responsive-collapse">
+                        <!-- Shopping Cart -->
+                        <a class="QQ" target="_blank" style="float: right;margin-left: 50px;margin-top: 25px" href="http://wpa.qq.com/msgrd?v=3&uin=3420999385&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3420999385:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                        <ul class="list-inline shop-badge badge-lists badge-icons pull-right">
+                            <li>
+                                <a ng-click="toOrderInfo()"><i id="cart" class="fa fa-shopping-cart"></i></a>
+                                <span class="badge badge-sea rounded-x" ng-if="allNum>0" ng-bind="allNum"></span>
+                                <ul class="list-unstyled badge-open mCustomScrollbar" ng-show="carts.length > 0" style="height:auto; max-height: 400px">
+                                    <li class="subtotal">
+                                        <div class="overflow-h">
+                                            <span>总计</span>
+                                            <span class="pull-right subtotal-cost" ng-bind="orderdetail.totalAmount"></span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-offset-6 col-xs-6">
+                                                <a ng-click="toOrderInfo()" class="btn-u btn-u-sea-shop btn-block">查看购物车</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li ng-repeat="p in carts track by $index">
+                                        <img ng-show="!p.image" ng-src="jjc/assets/images/prodDefault240.jpg">
+                                        <img ng-show="p.image" src="{{imageService+p.image}}">
+                                        <button type="button" class="close" ng-click="prodRemove(p.id)">×</button>
+                                        <div class="overflow-h">
+                                            <span ng-bind="p.name"></span>
+                                            <small ng-show="isLogin"> <small ng-bind="p.num"></small> x <small ng-bind="p.price"></small></small>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!-- End Shopping Cart -->
+
+                        <!-- Nav Menu -->
+                        <ul class="nav navbar-nav navbar-left">
+                            <!-- Pages -->
+                            <li class="dropdown">
+                                <a href="/" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+                                    首页
+                                </a>
+                            </li>
+                            <!-- End Pages -->
+
+                            <li class="dropdown" ng-repeat="bc in categories">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" ng-bind="bc.name">
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="sc in bc.types">
+                                        <a style="cursor: pointer" href="indexApp.html#/product_filter/{{sc.typeId}}/type/1"  ng-bind="sc.name"></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!-- End Nav Menu -->
+                        <div ng-if="!isMobile" id="searchText" class="input-group" style="padding-top: 20px;margin-bottom: 20px; padding-left: 50px;margin-right: 50px">
+                            <input id="webProdcutSearch" type="text" class="typeahead form-control header-input bodercolor-change" placeholder="{{'header-search-placeholder' | translate}}" ng-keyup="enterEvent($event)" ng-model="keyword">
+                            <span class="input-group-btn header-btn bgcolor-change" >
+                                <button class="btn-u bgcolor-change" type="button" ng-click="search()">搜索</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Navbar -->
+        </div>
+        <!--=== End Header v5 ===-->
+
+    </div>
+</div>

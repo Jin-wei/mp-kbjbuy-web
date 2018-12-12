@@ -1,0 +1,110 @@
+<div class="tv-box">
+    <div class="tv-header-box">
+        <div class="photo-box">
+            <div class="occupy"></div>
+
+            <div class="tv-header" >
+                <select name="" id="productSelect" class="select-1" ng-model="product" ng-change="getProductDetail()">
+                    <option value="{{prod.prodId}}" ng-repeat="prod in products">{{prod.productName}}</option>
+                </select>
+            </div>
+            <img ng-src="jjc/assets/images/tv/title-logo.png" class="title-logo"/>
+            <div class="detail-photo">
+                <div class="photo1" ng-repeat="img in imgData">
+                    <img ng-src="{{imageDes+img.img_url}}"  alt="">
+                </div>
+            </div>
+            <!-- <div class="photo2">
+                 <img ng-src="jjc/assets/images/tv/2.png"  alt="">
+             </div>
+             <div class="photo3">
+                 <img ng-src="jjc/assets/images/tv/3.png"  alt="">
+             </div>
+             <div class="photo4">
+                 <img ng-src="jjc/assets/images/tv/4.png"  alt="">
+             </div>-->
+        </div>
+    </div>
+</div>
+<style>
+    .tv-box{
+        width: 100%;
+        height:auto!important;
+        min-height:800px;
+        position: absolute;
+        background: #ffffff;
+        top: 0;
+        z-index: 9999;
+        min-width: 1920px;
+    }
+    .tv-header-box{
+        width: 100%;
+        height: 128px;
+        position: absolute;
+        background: #ffffff;
+        top: 0;
+        z-index: 9999;
+    }
+    .occupy{
+        width:100%;
+        height: 40px;
+        background: #fff;
+    }
+    .tv-header{
+        width:100%;
+        height: 88px;
+        background: red;
+        position: relative;
+    }
+    .title-logo{
+        position: absolute;
+        top: 20px;
+        left:5%;
+    }
+    .select-1{
+        width:422px;
+        height: 62px;
+        font-size: 22px;
+        position: absolute;
+        right: 5%;
+        top: 12px;
+        border-radius:20px;
+    }
+    .photo1{
+        width: 50%;
+        height: auto;
+        float: left;
+        background: #ffffff;
+    }
+    .photo1 img{
+        width: 100%;
+        padding:0 30px;
+        height: auto;
+    }
+    .photo2{
+        margin-top: 110px;
+    }
+    .photo3{
+        margin-top: 50px;
+        margin-left: 80px;
+        margin-right: 10px;
+        float: left;
+    }
+    .photo4{
+        margin-top: 90px;
+        margin-left: 80px;
+    }
+    .detail-photo{
+        width: 100%;
+        min-height: 600px;
+        position: absolute;
+        top:165px;
+        z-index: 9999;
+        background: #ffffff;
+    }
+    .photo-box{
+        background: #fff;
+        min-width: 1920px;
+    }
+</style>
+</html>

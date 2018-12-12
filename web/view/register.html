@@ -1,0 +1,72 @@
+<div class="wrapper">
+    <!--=== Registre ===-->
+    <div class="log-reg-v3" style="padding-top: 20px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <img ng-src="jjc/assets/images/register.jpg" width="95%"/>
+                </div>
+                <div class="col-md-5">
+                    <form id="sky-form4" class="log-reg-block sky-form">
+                        <h2>注册新用户</h2>
+                        <div class="login-input reg-input">
+                            <section>
+                                <select class="form-control" ng-model="identity" id="type" style="color: black;font-size: 16px;">
+                                    <option value="" selected>请选择注册身份</option>
+                                    <option value="个人">个人</option>
+                                    <option value="商家">商家</option>
+                                </select>
+                            </section>
+                            <section>
+                                <label class="input">
+                                    <input type="text" name="name" placeholder="用户名" class="form-control" ng-model="name">
+                                </label>
+                            </section>
+                            <section>
+                                <label ng-show="RegisterType == 1" class="input">
+                                    <input type="text" name="phone" placeholder="手机号" class="form-control" ng-model="phone">
+                                </label>
+                                <label ng-show="RegisterType == 2" class="input">
+                                    <input type="text" name="email" placeholder="请输入邮箱" class="form-control" ng-model="email">
+                                </label>
+                                <a style="float: right" ng-click="clickRegisterType()">{{RegisterType==1?'邮箱注册':'手机注册'}}</a>
+                            </section>
+                            <section ng-show="RegisterType == 1">
+                                <div class="row margin-bottom-10">
+                                    <div class="col-xs-6">
+                                        <label class="input">
+                                            <input type="text" name="code" placeholder="验证码" class="form-control" ng-model="code">
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <label class="input">
+                                            <button class="btn-u btn-u-sea-shop" id="codeBtn" ng-click="sendCode()">发送验证码</button>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <label class="input">
+                                    <input type="password" name="password" placeholder="设置密码" id="password" class="form-control" ng-model="password">
+                                </label>
+                            </section>
+                            <section>
+                                <label class="input">
+                                    <input type="password" name="passwordConfirm" placeholder="确认密码" class="form-control" ng-model="passwordConfirm">
+                                </label>
+                            </section>
+                        </div>
+                        <label class="checkbox margin-bottom-20">
+                            <input type="checkbox" name="checkbox" checked/>
+                            <i></i>
+                            我已阅读并同意<a href="indexApp.html#/registration_agreement">《用户注册协议》</a>
+                        </label>
+                        <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" ng-click="registerClick()">立即注册</button>
+                    </form>
+                </div>
+            </div><!--/end row-->
+        </div><!--/end container-->
+    </div>
+    <!--=== End Registre ===-->
+
+</div><!--/wrapper-->

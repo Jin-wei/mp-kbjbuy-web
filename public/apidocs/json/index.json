@@ -1,0 +1,144 @@
+{
+   "swagger":"2.0",
+   "info":{
+      "description":"Jinjiecheng web.",
+      "version":"1.0.0",
+      "title":"cJinjiecheng web backend service",
+      "contact":{
+         "name":"Jie Zou"
+      }
+   },
+   "host":"127.0.0.1:8020",
+   "basePath":"/api",
+   "tags":[
+      {
+         "name":"payments",
+         "description":"payments CRUD.",
+         "externalDocs":{
+            "description":"payments CRUD",
+            "url":"127.0.0.1:8020"
+         }
+      }
+   ],
+   "schemes":[
+      "http"
+   ],
+   "paths":{
+      "/order/{orderId}/alipay":{
+         "get":{
+            "tags":[
+               "payments"
+            ],
+            "description":"submit an alipay request.",
+            "produces":[
+               "application/json"
+            ],
+            "parameters":[
+               {
+                  "name":"orderId",
+                  "in":"path",
+                  "description":"order id",
+                  "required":true,
+                  "type":"number",
+                  "format":"integer"
+               }
+            ],
+            "responses":{
+               "200":{
+                  "description":"Successful response",
+                  "schema":{
+                     "$ref":"#/definitions/GetAliFormResponse"
+                  }
+               },
+               "403":{
+                  "description":"Unauthorized"
+               }
+            }
+         }
+      },
+   "/alipay/notify":{
+      "post":{
+         "tags":[
+            "payments"
+         ],
+         "description":"alipay payment notify",
+         "produces":[
+            "application/json"
+         ],
+         "parameters":[
+            {
+               "name":"body",
+               "in":"body",
+               "required":true
+            }
+         ],
+         "responses":{
+            "200":{
+               "description":"Successful response"
+            },
+            "403":{
+               "description":"Unauthorized"
+            }
+         }
+      }
+   },
+   "/alipay/testnotify":{
+      "post":{
+         "tags":[
+            "payments"
+         ],
+         "description":"alipay payment notify simulation",
+         "produces":[
+            "application/json"
+         ],
+         "parameters":[
+            {
+               "in":"body",
+               "name":"body",
+               "description":"alipay notify payload simulation",
+               "required":true,
+               "schema":{
+                  "$ref":"#/definitions/AliNotifyTestRequest"
+               }
+            }
+         ],
+         "responses":{
+            "200":{
+               "description":"Successful response"
+            },
+            "403":{
+               "description":"Unauthorized"
+            }
+         }
+      }
+      }
+   },
+   "definitions":{
+      "GetAliFormResponse":{
+         "type":"object",
+         "properties":{
+            "success":{
+               "type":"boolean"
+            },
+            "html":{
+               "type":"string"
+            }
+         }
+      },
+      "AliNotifyTestRequest":{
+         "type":"object",
+         "properties":{
+            "trade_no":{
+               "type":"string"
+            },
+            "out_trade_no":{
+               "type":"string"
+            },
+            "buyer_pay_amount":{
+               "type":"string",
+               "format":"double"
+            }
+         }
+      }
+   }
+}

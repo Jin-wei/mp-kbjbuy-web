@@ -1,0 +1,35 @@
+
+
+.content-top {
+    background-color: #fcf5f6;
+    height:70px;
+    border-bottom: 1px grey solid;
+}
+
+.content-top-tile{
+    font-size: 20px;
+    padding-top: 30px;
+}
+
+.content {
+    background-color: #fcf5f6;
+    border-bottom: 1px grey solid;
+}
+
+.content-tile {
+    font-size: 20px;
+}
+
+.content-form {
+    height: 30px;
+}
+
+.content-form-title {
+    font-size: 16px;
+    font-weight: normal;
+    color:rgb(176,176,176);
+    line-height: 30px;
+}
+.submit {
+    width: 100px;
+}

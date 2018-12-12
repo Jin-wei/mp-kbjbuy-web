@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="app_module" ng-controller="headerController">
+<head lang="en">
+    <title>咖布集官网_咖啡行业一站式直供平台(kbjbuy.com)</title>
+    <meta name="keywords" content="咖布集、咖啡行业一站式直供平台、咖啡原料、水吧台、器具、设备原料批发、经营连锁培训实战基地、kbjbuy"/>
+    <meta name="description" content="咖布集是一家咖啡行业一站式直供平台。"/>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="shortcut icon" href="image/jjc/favicon.ico"/>
+    <link rel="stylesheet" href="./assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/iconfont/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+    <!-- build:css css/mp-g.jjc.css -->
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="css/jjc-style.css"/>
+    <!-- endbuild -->
+    <!--<base href="/">-->
+</head>
+<body>
+<!--<header-jjc></header-jjc>-->
+<div class="jjc-header">
+    <div class="header-black-width col-xs-12 col-md-12">
+        <div class="header-black">
+            <dd class="col-xs-12 col-sm-6 col-md-6">欢迎来到咖啡业一站式电商服务平台 —— 咖布集 | kbjbuy.com</dd>
+            <dt class="col-xs-12 col-sm-6 col-md-6">
+                <span ng-if="isLogin && !isMobile"><a ng-bind="userName"></a></span>
+                <span ng-if="isLogin && !isMobile"><button ng-click="logOut()" style="background: none;border: none">| &nbsp;&nbsp;&nbsp;退&nbsp;出</button></span>
+                <span>服务热线：0756-6858865</span>
+            </dt>
+        </div>
+    </div>
+    <div class="header-width">
+        <dl class="header-write col-xs-12 col-md-12">
+            <dd class="header-logo col-xs-5 col-sm-3 col-md-3">
+                <a href="/" target="_self">
+                    <img class="img-responsive" src="image/jjc/logo.png">
+                </a>
+            </dd>
+            <dt class="col-xs-7 col-sm-9 col-md-9">
+            <div class="header-qq">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=3420999385&site=qq&menu=yes">
+                    <img class="img-responsive" src="image/jjc/pic1.png"/>
+                </a>
+            </div>
+
+            <div class="header-shop">
+                <ul class="list-inline shop-badge badge-lists badge-icons pull-right">
+                    <li>
+                        <span class="badge badge-sea shop-count" ng-if="allNum>0" ng-bind="allNum"></span>
+                        <a href="indexApp.html#/orderInfo" target="_self">
+                            <img class="header-shop-img" src="image/jjc/jjc-shop.png"/>
+                            <span class="header-shop-span">购物车</span>
+                        </a>
+                        <ul class="list-unstyled badge-open mCustomScrollbar carts-list" ng-show="carts.length > 0">
+                            <li class="subtotal">
+                                <div class="overflow-h">
+                                    <span>总计</span>
+                                    <span class="pull-right subtotal-cost" ng-bind="orderdetail.totalAmount"></span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-offset-6 col-xs-6">
+                                        <a href="indexApp.html#/orderInfo"
+                                           class="btn-u btn-u-sea-shop header-shop-list btn-block">查看购物车</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li  ng-repeat="p in carts track by $index">
+                                <img ng-if="!p.image"
+                                     ng-src="jjc/assets/images/prodDefault240.jpg">
+                                <img ng-if="p.image" ng-src="{{imageService+p.image}}">
+                                <button type="button" class="close" ng-click="prodRemove(p.id)">×</button>
+                                <div class="overflow-h">
+                                    <span ng-bind="p.name"></span>
+                                    <small ng-show="isLogin">
+                                        <small ng-bind="p.num"></small>
+                                        x
+                                        <small ng-bind="p.price"></small>
+                                    </small>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="header-input-box col-xs-12 col-sm-7 col-md-7">
+                <div class="input-group">
+                    <input class="form-control" id="webProdcutSearch" type="text" autocomplete="off" placeholder="咖啡豆"/>
+                    <div class="input-group-addon search-btn" ng-click="search()">搜索</div>
+                </div>
+            </div>
+            </dt>
+        </dl>
+
+        <div class="jjc-nav col-md-12 col-xs-12">
+            <ul class="jjc-nav-ul">
+                <li>
+                    <a href="/" class="click" target="_self">首 页</a>
+                </li>
+                <li>
+                    <a href="/api/type/5b751a7b0426b45c29f247b6/page/1" target="_self">咖啡百科</a>
+                </li>
+                <li class="header-product-nav" ng-click="showLabel()">
+                    <a target="_self">产品导航 <span class="glyphicon glyphicon-chevron-down jjc-nav-down"></span></a>
+                </li>
+                <!--<li>
+                    <a href="indexApp.html#/product_filter/214/type/1" target="_self">品牌中心</a>
+                </li>-->
+                <li>
+                    <a href="indexApp.html#/cityPartner" target="_self">城市合伙人</a>
+                </li>
+                <li>
+                    <a href="indexApp.html#/supplierRecruitment" target="_self">供应商入驻</a>
+                </li>
+            </ul>
+
+            <div class="product-nav">
+                <h2 class="product-title">
+                    产品导航
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </h2>
+                <div class="product-label">
+                    <ul>
+                        <li>
+                            <h2><span>原/辅材料</span></h2>
+                            <p>
+                                <a href="indexApp.html#/product_filter/5/type/1" target="_self">咖啡豆/粉</a>
+                                <a href="indexApp.html#/product_filter/209/type/1" target="_self">速溶咖啡粉</a>
+                                <a href="indexApp.html#/product_filter/%E9%A2%84%E6%8B%8C%E7%B2%89/type/2"
+                                   target="_self">预拌粉</a>
+
+                                <a href="indexApp.html#/product_filter/%E8%9C%9C%E9%9C%B2/type/2" target="_self">蜜露</a>
+                                <a href="indexApp.html#/product_filter/%E7%B3%96%E6%B5%86/type/2" target="_self">糖浆</a>
+                                <a href="indexApp.html#/product_filter/6/type/1" target="_self">奶类</a>
+                                <a href="indexApp.html#/product_filter/7/type/1" target="_self">茶类</a>
+                                <a href="indexApp.html#/product_filter/8/type/1" target="_self">其他</a>
+                                <!-- <a href="http://www.kbjbuy.com/product_filter/20/type/1" target="_self">冲调饮品</a>-->
+                            </p>
+                        </li>
+                        <li class="mod_cate">
+                            <h2><span>设备器具</span></h2>
+                            <p class="mod_cate_r">
+                                <a href="indexApp.html#/product_filter/10/type/1" target="_self">咖啡机</a>
+                                <a href="indexApp.html#/product_filter/11/type/1" target="_self">磨豆机</a>
+                                <a href="indexApp.html#/product_filter/21/type/1" target="_self">吧台器具</a><br>
+
+                                <a href="indexApp.html#/product_filter/12/type/1" target="_self">制冷设备</a>
+                                <a href="indexApp.html#/product_filter/13/type/1" target="_self">吧台设备</a>
+                            </p>
+                        </li>
+                        <li class="mod_cate">
+                            <h2><span>快速直购</span></h2>
+                            <p class="mod_cate_r">
+                                <a href="indexApp.html#/product_filter/%E5%92%96%E5%95%A1%E5%8E%85/type/3"
+                                   target="_self">咖啡厅</a>
+                                <a href="indexApp.html#/product_filter/%E5%A5%B6%E8%8C%B6%E5%BA%97/type/3"
+                                   target="_self">奶茶店</a>
+                                <a href="indexApp.html#/product_filter/%E7%BD%91%E5%92%96/type/3" target="_self">网咖</a>
+                                <a href="indexApp.html#/product_filter/%E4%BE%BF%E5%88%A9%E5%BA%97/type/3"
+                                   target="_self">便利店</a>
+
+                                <a href="indexApp.html#/product_filter/%E5%8A%9E%E5%85%AC%E5%AE%A4/type/3"
+                                   target="_self">办公室</a>
+                                <a href="indexApp.html#/product_filter/%E5%A4%8D%E5%90%88%E5%BC%8F%E9%A5%BC%E5%BA%97/type/3"
+                                   target="_self">复合式饼店</a>
+                            </p>
+                        </li>
+                        <li class="mod_cate">
+                            <h2><span>配套服务</span></h2>
+                            <p class="mod_cate_r">
+                                <a href="indexApp.html#/product_filter/14/type/1" target="_self">礼品</a>
+                                <a href="indexApp.html#/product_filter/15/type/1" target="_self">会务服务</a>
+                                <a href="indexApp.html#/product_filter/17/type/1" target="_self">培训类</a>
+                                <a href="indexApp.html#/product_filter/23/type/1" target="_self">设备回收</a>
+                                <a href="indexApp.html#/product_filter/225/type/1" target="_self">租赁</a>
+                            </p>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jjc-home-container">
+    <div class="jjc-content-width">
+
+        <!--banner-->
+        <div class="col-md-12 col-xs-12 jjc-banner" style="padding: 0;margin: 0">
+            <div id="carousel-banner" class="carousel" data-ride="carousel">
+                <div class="carousel-inner home2-banner" role="listbox">
+                    <div class="item active">
+                        <img src="image/jjc/pic3.jpg" alt="香醇咖啡豆，20年老牌咖啡工厂，美好的时光只与你分享。">
+                    </div>
+                </div>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-banner" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-banner" data-slide-to="1"></li>
+                    <li data-target="#carousel-banner" data-slide-to="2"></li>
+                </ol>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 col-sm-12 col-xs-12 banner-up-content">
+            <!--右侧登陆-->
+            <div class="banner-right">
+                <div class="top-login">
+                    <img src="image/jjc/jjc-home-person.png" alt="个人头像"/>
+                    <p>您好，欢迎光临咖布集官网！</p>
+                    <a href="indexApp.html#/login" class="login" target="_self">会员登录</a>
+                    <a href="indexApp.html#/register" class="register" target="_self">免费注册</a>
+                </div>
+                <div class="link-list-div">
+                    <ul class="link-list">
+                        <li>
+                            <a href="indexApp.html#/my_orders" target="_self">
+                                <img src="image/jjc/pic17.png" alt="订单图标"/>
+                                <span>订单</span>
+                            </a>
+                        </li>
+                        <li ng-if="isLogin===true || isLogin===1">
+                            <a href="indexApp.html#/my_prodList" target="_self">
+                                <img src="image/jjc/pic18.png" alt="常购图标"/>
+                                <span>常购</span>
+                            </a>
+                        </li>
+                        <li ng-if="isLogin===true || isLogin===1">
+                            <a href="indexApp.html#/changePhone" target="_self" alt="换号图标">
+                                <img src="image/jjc/pic19.png"/>
+                                <span>换号</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="indexApp.html#/my_collections" target="_self" alt="收藏图标">
+                                <img src="image/jjc/pic20.png" class="link-list-collection"/>
+                                <span>收藏</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="announcement">
+                    <h3>☆----- 公 告 -----☆</h3>
+                    <div id="scrollDiv">
+                        <ul>
+                            <li>恭喜金捷成品牌入驻咖布集官网</li>
+                            <li>恭喜克尔比斯品牌入驻咖布集</li>
+                            <li>恭喜锡兰红茶入驻咖布集官网</li>
+                            <li>恭喜锡兰红茶入驻咖布集官网</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+
+        <section class="col-md-12 col-xs-12 city-partner">
+            <a href="indexApp.html#/cityPartner" title="" target="_blank"><img src="image/jjc/qd_s8.png"
+                                                                               alt="城市合伙人招募,立即报名"/></a>
+        </section>
+        <div class="clear"></div>
+
+        <section class="col-md-12 col-xs-12 new-products-banner">
+            <img src="image/jjc/qd_s9.png" alt="1F 新品上市 New products"/>
+        </section>
+
+        <section class="new-products-list">
+            <ul>
+                <li><a href="indexApp.html#/product/103228/bizId/100061" title="益生菌" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s10_r0_c0.jpg"
+                        alt="常喝益生菌，肠道更年轻。"/></a></li>
+                <li><a href="indexApp.html#/product/104225/bizId/100001" title="巴西山度士挂耳咖啡" target="_blank"><img
+                        class="img-responsive" style="border-radius:1em"
+                        src="image/jjc/qd_s10_r0_c1.png" alt="巴西山度士挂而咖啡，随身携带移动咖啡馆"/></a></li>
+                <li><a href="indexApp.html#/product/103208/bizId/100001" title="意大利挂耳咖啡" target="_blank"><img
+                        class="img-responsive" style="border-radius:1em"
+                        src="image/jjc/qd_s10_r0_c2.png" alt="意大利挂尔咖啡，浓缩中的精品。"/></a></li>
+                <li><a href="indexApp.html#/product/103244/bizId/100001" title="耶加雪啡精品咖啡" target="_blank"><img
+                        class="img-responsive" style="border-radius:1em"
+                        src="image/jjc/qd_s10_r0_c3.png" alt="精品耶加雪菲，庄园顶级。"/></a></li>
+                <li><a href="indexApp.html#/product/103518/bizId/100001" title="金捷成蓝山王咖啡" target="_blank"><img
+                        class="img-responsive" style="border-radius:1em"
+                        src="image/jjc/qd_s10_r0_c4.png" alt="金捷成蓝山王咖啡，香醇、干净、浓郁"/></a></li>
+            </ul>
+            <ul>
+                <li><a href="indexApp.html#/product/103228/bizId/100061" title="益生菌" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s10_r1_c0.png"
+                        alt="尖货优选，厂家直销，免安装，质保期长，至佳虹吸壶，至佳手摇磨豆机TIAMO滤杯。"/></a></li>
+                <li><a href="indexApp.html#/product/103201/bizId/100001" title="锡兰红茶" target="_blank"><img
+                        class="img-responsive" style="border-radius:1em"
+                        src="image/jjc/qd_s10_r1_c1.png" alt="克尔比斯锡兰红茶，芳香的气息，浓郁的口感。"/></a></li>
+                <li><a href="indexApp.html#/product/103211/bizId/100012" title="胶囊咖啡机" target="_blank"><img
+                        class="img-responsive" style="border-radius:1em"
+                        src="image/jjc/qd_s10_r1_c2.png" alt="胶囊咖啡机，咖啡时光一触即来。"/></a></li>
+                <li><a href="indexApp.html#/product/104224/bizId/100001" title="手冲套装" target="_blank"><img
+                        class="img-responsive" style="border-radius:1em"
+                        src="image/jjc/qd_s10_r1_c3.png" alt="精品手冲套装，家用必备咖啡器具。"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E8%93%9D%E5%B1%B1/type/2" title="蓝山咖啡" target="_blank"><img
+                        class="img-responsive" style="border-radius:1em"
+                        src="image/jjc/qd_s10_r1_c4.png" alt="克尔比斯蓝山风味，浓郁可口。"/></a></li>
+            </ul>
+        </section>
+        <div class="clear"></div>
+
+
+        <section class="shopping-scene col-md-12 col-xs-12">
+            <img class="banner" src="image/jjc/qd_s11.png" alt="2F 场景购 Shopping scene"/>
+        </section>
+        <section class="shopping-scene-list">
+            <ul>
+                <li><a href="indexApp.html#/product_filter/%E5%92%96%E5%95%A1%E5%8E%85/type/3" title="咖啡厅场景购"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s12_r0_c0.png"
+                                            alt="咖啡厅场景购图片1"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E5%92%96%E5%95%A1%E5%8E%85/type/3" title="咖啡厅场景购"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s12_r0_c1.png"
+                                            alt="咖啡厅场景购图片2"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E5%A5%B6%E8%8C%B6%E5%BA%97/type/3 " title="奶茶店场景购"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s12_r0_c2.png"
+                                            alt="奶茶店场景购"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E7%BD%91%E5%92%96/type/3 " title="网咖影咖场景购"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s12_r0_c3.png"
+                                            alt="网咖影咖场景购"/></a></li>
+            </ul>
+            <ul>
+                <li><a href="indexApp.html#/product_filter/%E5%92%96%E5%95%A1%E5%8E%85/type/3 " title="咖啡厅场景购"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s12_r1_c0.png"
+                                            alt="咖啡厅场景购图片3"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E5%92%96%E5%95%A1%E5%8E%85/type/3" title="咖啡厅场景购"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s12_r1_c1.png"
+                                            alt="咖啡厅场景购图片4"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E5%A4%8D%E5%90%88%E5%BC%8F%E9%A5%BC%E5%BA%97/type/3"
+                       title="复合式饼店烘焙店场景购" target="_blank"><img class="img-responsive" src="image/jjc/qd_s12_r1_c2.png"
+                                                                alt="复合式饼店烘焙店场景购"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E4%BE%BF%E5%88%A9%E5%BA%97/type/3 " title="便利店场景购"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s12_r1_c3.png"
+                                            alt="便利店场景购"/></a></li>
+            </ul>
+        </section>
+        <div class="clear"></div>
+
+
+        <section class="bargain-goods col-md-12 col-xs-12 ">
+            <img class="banner" src="image/jjc/qd_s13.png" alt="3F 特惠商品 Bargain goods"/>
+        </section>
+        <section class="bargain-goods-list">
+            <ul>
+                <li><a href="indexApp.html#/product_filter/5/type/1" title="咖啡豆" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s14_r0_c0.jpg"
+                        alt="金捷成拼配咖啡，意大利特浓咖啡。"/></a></li>
+                <li><a href="indexApp.html#/product/103355/bizId/100001" title="黑白奶" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s14_r0_c1.png"
+                        alt="黑白淡奶，味道醇厚，质感浓稠。"/></a></li>
+                <li><a href="indexApp.html#/product/103178/bizId/100001" title="柑橘露" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s14_r0_c2.jpg"
+                        alt="佳美柑橘露，含有丰富维生素。"/></a></li>
+                <li><a href="indexApp.html#/product/103671/bizId/100001" title="精品一号咖啡" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s14_r0_c3.jpg"
+                        alt="金捷成精品一号咖啡，品质生活，就选精品一号。"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E6%9B%BC%E5%B7%B4%E5%92%96%E5%95%A1/type/2" title="曼巴咖啡"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s14_r0_c4.jpg"
+                                            alt="金捷成曼巴咖啡，浓郁香醇。"/></a></li>
+            </ul>
+            <ul>
+                <li><a href="indexApp.html#/product_filter/5/type/1" title="咖啡豆" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s14_r1_c0.jpg"
+                        alt="尖货优选，厂家直销，品质之选。"/></a></li>
+                <li><a href="indexApp.html#/product/103717/bizId/100066" title="至佳冻奶茶粉" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s14_r1_c1.png"
+                        alt="克而比斯冻奶茶粉，香香的茶，浓浓的情。"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E7%89%B9%E7%BA%A7%E6%8B%BC%E9%85%8D%E8%8C%B6/type/2"
+                       title="至佳拼配茶粉" target="_blank"><img class="img-responsive" src="image/jjc/qd_s14_r1_c2.jpg"
+                                                           alt="至佳特级拼配茶，香气浓郁高雅，滋味鲜醇。"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E6%B4%8B%E7%94%98%E8%8F%8A/type/2" title="曼宁洋甘菊"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s14_r1_c3.jpg"
+                                            alt="曼宁洋甘菊，大自然的味道。"/></a></li>
+                <li><a href="indexApp.html#/product_filter/MJ/type/2" title="彼拉美地果酱" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s14_r1_c4.jpg"
+                        alt="彼拉美地柠檬果酱，酸酸天天绿色健康。"/></a></li>
+            </ul>
+        </section>
+        <div class="clear"></div>
+
+
+        <section class="special-equipment col-md-12 col-xs-12 ">
+            <img class="banner" src="image/jjc/qd_s15.png" alt="4F 特惠设备 Special equipment"/>
+        </section>
+        <section class="col-md-12 col-xs-12 special-equipment-list">
+            <ul>
+                <li><a href="indexApp.html#/product_filter/%E5%92%96%E5%95%A1%E6%9C%BA/type/2" title="咖啡机"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s16_r0_c0.png"
+                                            alt="将军咖啡机，咖啡机中的战斗机。"/></a></li>
+                <li><a href="indexApp.html#/product/103183/bizId/100003" title="啡爱玛咖啡机" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s16_r0_c1.png"
+                        alt="啡爱玛双头咖啡机，咖啡厅首先超高性价比"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E8%89%BE%E6%B3%BD%E6%A3%AE/type/2" title="艾泽森咖啡机"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s16_r0_c2.png"
+                                            alt="艾泽森咖啡机，零基础轻松称为咖啡大师"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E7%A3%A8%E8%B1%86%E6%9C%BA/type/2" title="磨豆机"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s16_r0_c3.jpg"
+                                            alt="俾斯麦磨豆机"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E5%BF%97%E5%AE%89/type/2" title="志安烘焙机" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s16_r0_c4.jpg"
+                        alt="志安1kg电加热烘培机，全自动一体机。"/></a></li>
+            </ul>
+            <ul>
+                <li><a href="indexApp.html#/product_filter/%E5%92%96%E5%95%A1%E6%9C%BA/type/2" title="咖啡机"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s16_r1_c0.png"
+                                            alt="尖货优选：K-CUP漏奶咖啡奶茶机，美式咖啡机，苏打水HR181"/></a></li>
+                <li><a href="indexApp.html#/product/103312/bizId/100003" title="俾斯麦开水机" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s16_r1_c1.png"
+                        alt="俾斯麦步进式开水机，微电脑自控PRS-20A/B"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E5%86%B0%E6%B7%87%E6%B7%8B%E6%9C%BA/type/2" title="冰淇淋机"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s16_r1_c2.png"
+                                            alt="宇雪单缸冰激淋机，进口压缩机，持久耐用。"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E5%88%B6%E5%86%B0%E6%9C%BA/type/2" title="制冰机"
+                       target="_blank"><img class="img-responsive" src="image/jjc/qd_s16_r1_c3.jpg"
+                                            alt="优瑞蓝光制冰机，快速出冰，省时省心。"/></a></li>
+                <li><a href="indexApp.html#/product_filter/%E5%86%B7%E6%9F%9C/type/2" title="冷柜" target="_blank"><img
+                        class="img-responsive" src="image/jjc/qd_s16_r1_c4.jpg"
+                        alt="优瑞蓝光平冷柜，鲜美0距离，蓝光杀菌冷藏柜。"/></a></li>
+            </ul>
+        </section>
+        <div class="clear"></div>
+
+
+        <section class="col-md-12 col-xs-12 activity-gift">
+            <img class="banner" src="image/jjc/qd_s17.png" alt="5F 活动与礼品 Activity & Gift"/>
+        </section>
+        <section class="activity-gift-list col-md-12 col-xs-12">
+            <ul>
+                <li class="col-md-6 col-xs-6"><a href="" title="" target="_blank">
+                    <img class="img-responsive" style="border-radius:0.7em" src="image/jjc/qd_s18_r0_c0.jpg"
+                         alt="活动配套服务，承接各种会议活动配套服务，提供咖啡、奶茶、茶饮简餐的服务。"/></a></li>
+                <li class="col-md-6 col-xs-6"><a href="" title="" target="_blank">
+                    <img class="img-responsive" style="border-radius:0.7em" src="image/jjc/qd_s18_r0_c2.png"
+                         alt="gift custom 礼品定制，精美礼品，定制专用，种类丰富。"/></a></li>
+            </ul>
+        </section>
+        <div class="clear"></div>
+
+
+        <section class="flea-market col-md-12 col-xs-12">
+            <img class="banner" src="image/jjc/qd_s19.png" alt="6F 二手市场 Flea market"/>
+        </section>
+        <section class="flea-market-list col-md-12 col-xs-12">
+            <div class="flea-market-banner col-md-12 col-xs-12">
+                <img style="border-radius:0.7em" src="image/jjc/qd_s20.png" alt=""/>
+            </div>
+            <ul>
+                <li class="col-md-4 col-xs-4"><a href="" title="" target="_blank">
+                    <img class="img-responsive" style="border-radius:0.7em" src="image/jjc/qd_s21_r0_c0.png"
+                         alt="各式设备回收，咖啡机、磨豆机等，点击查看。"/></a></li>
+                <li class="col-md-4 col-xs-4"><a href="" title="" target="_blank">
+                    <img class="img-responsive" style="border-radius:0.7em" src="image/jjc/qd_s21_r0_c1.png"
+                         alt="各式设备销售，吧台设备、制冷设备等，点击查看。"/></a></li>
+                <li class="col-md-4 col-xs-4"><a href="" title="" target="_blank">
+                    <img class="img-responsive" style="border-radius:0.7em" src="image/jjc/qd_s21_r0_c2.png"
+                         alt="整体套餐，套餐方案，省心省钱，点击查看。"/></a></li>
+            </ul>
+        </section>
+        <div class="clear"></div>
+
+    </div>
+
+    <div class="jjc-footer">
+        <div class="jjc-footer-width">
+            <div class="col-md-12 col-xs-12 jjc-footer-img">
+                <img src="image/jjc/qd_s25.png" alt="品类齐全，工厂直销，正品保障，同城支持，贴心服务。"/>
+            </div>
+            <div class="footer-list">
+                <ul>
+                    <li>
+                        <span>关于支付</span>
+                        <a href="indexApp.html#/online_payment_guide" target="_self">在线支付</a>
+                        <a href="indexApp.html#/cod_guide" target="_self">货到付款</a>
+                    </li>
+                    <li>
+                        <span>配送流程</span>
+                        <a href="indexApp.html#/distribution_notice_guide" target="_self">配送须知</a>
+                        <a href="indexApp.html#/distribution_range_guide" target="_self">配送范围</a>
+                    </li>
+                    <li>
+                        <span>售后服务</span>
+                        <a href="indexApp.html#/server_info_guide" target="_self">服务说明</a>
+                        <a href="indexApp.html#/server_detail_guide" target="_self">服务细则</a>
+                    </li>
+                    <li>
+                        <span>下单指引</span>
+                        <a href="indexApp.html#/user_register_guide" target="_self">用户注册</a>
+                        <a href="indexApp.html#/purchase_guide" target="_self">购买流程</a>
+                        <a href="indexApp.html#/serviceRegulation" target="_self">使用规则</a>
+                    </li>
+                    <li>
+                        <span>关于我们</span>
+                        <a href="indexApp.html#/aboutUs" target="_self">公司介绍</a>
+                        <a href="indexApp.html#/biz_settled_guide" target="_self">商家入驻</a>
+                        <a href="indexApp.html#/contact_us_guide" target="_self">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-list-right">
+                <p>咖啡业一站式电商服务平台——咖布集官网</p>
+                <div class="footer-icon">
+                    <a href=""><img src="image/jjc/pic9.png"/></a>
+                    <a href=""><img src="image/jjc/pic10.png"/></a>
+                    <a href=""><img src="image/jjc/pic11.png"/></a>
+                    <a href=""><img src="image/jjc/pic12.png"/></a>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+            <div class="footer-bottom">
+                <p class="footer-link">
+                    <strong>友情链接：</strong>
+                    <span>
+                             <a target="_blank" href="http://www.zhypeixun.com" title="正宇培训">咖啡西点培训</a>
+                            |<a target="_blank" href="indexApp.html#/product_filter/%E6%84%8F%E5%A4%A7%E5%88%A9/type/2"
+                                title="意大利咖啡" target="_blank">意式咖啡</a>
+                            |<a target="_blank" href="indexApp.html#/product_filter/Espresso/type/2" title="ESPRESSO">Espresso咖啡</a>
+                            |<a target="_blank" href="indexApp.html#/product_filter/%E5%B7%B4%E8%A5%BF/type/2"
+                                title="巴西山度士咖啡">巴西山度士咖啡</a>
+                            |<a target="_blank" href="indexApp.html#/product_filter/%E4%B8%87%E8%BE%BE%E5%AE%81/type/2"
+                                title="曼特宁咖啡">曼特宁咖啡</a>
+                            |<a target="_blank"
+                                href="indexApp.html#/product_filter/%E8%80%B6%E5%8A%A0%E9%9B%AA%E5%95%A1/type/2"
+                                title="耶加雪啡">耶加雪啡</a>
+                            |<a target="_blank"
+                                href="indexApp.html#/product_filter/%E6%8C%82%E8%80%B3%E5%92%96%E5%95%A1/type/2"
+                                title="挂耳滤泡咖啡">挂耳咖啡</a>
+                            |<a target="_blank"
+                                href="indexApp.html#/product_filter/%E8%93%9D%E5%B1%B1%E5%92%96%E5%95%A1/type/2"
+                                title="牙买加蓝山咖啡">蓝山咖啡</a>
+                            |<a target="_blank" href="https://detail.1688.com/offer/560566248251.html"
+                                title="锡兰红茶">锡兰红茶</a>
+                            |<a target="_blank" href="https://detail.1688.com/offer/560564580109.html" title="蜂蜜柚子茶">蜂蜜柚子茶</a>
+							|<a target="_blank" href="https://detail.1688.com/offer/562840080376.html"
+                                title="马来西亚佳美柑橘露">佳美柑橘露</a>
+                        </span>
+                </p>
+                <p class="footer-copyright">
+                    <span> Copyright 咖布集电商 2015-2018 <a target="_blank" ;
+                                                        href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action"
+                                                        rel="nofollow">粤ICP备16110987号</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="isMobile" class="col-xs-12" style="position: fixed;bottom: 0px;
+         background:black ;z-index: 999999;height: 70px">
+        <div class="row" style="text-align: center;margin: 0px">
+            <div style="width: 20%;float:left;margin-top: 15px">
+                <a href="/" target="_self">
+                    <div class="icon-color iconfont icon-shouye1" style="font-size: 22px"></div>
+                    <div style="font-size: 10px;">
+                        <span>首页</span>
+                    </div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="indexApp.html#/orderInfo" target="_self">
+                    <div class="icon-color iconfont icon-gouwuche" style="font-size: 22px"></div>
+                    <div style="width: 100%;font-size: 10px;margin-top: 2px">
+                        <span>购物车</span>
+                    </div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=3420999385&site=qq&menu=yes" target="_blank">
+                    <div class="icon-color iconfont icon-kefu1" style="font-size: 22px"></div>
+                    <div style="font-size: 10px;"><span>在线客服</span></div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="indexApp.html#/my_prodList" target="_self">
+                    <div class="icon-color iconfont icon-changyong" style="font-size: 22px"></div>
+                    <div style="width: 100%;font-size: 10px;margin-left: 0;margin-top: 2px;">
+                        <span>常用产品</span>
+                    </div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="indexApp.html#/personal_center" target="_self">
+                    <div class="icon-color iconfont icon-wode" style="font-size: 22px"></div>
+                    <div style="font-size: 10px;margin-left: 3px">
+                        <span>我的</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-guide">
+        <div class="guide-wrap">
+            <a href="#" class="kefu" title="找客服"><span>客服</span></a>
+            <a href="#" class="call" title="0756-6858865"><span>电话</span></a>
+            <a href="#" class="wechat" title="咖布集微信公众号"><span>微信</span></a>
+            <a href="javascript:window.scrollTo(0,0)" class="top" title="回顶部"><span>顶部</span></a>
+        </div>
+    </div>
+</div>
+<!--JQuery-->
+<script src="./assets/plugins/jquery/jquery.min.js"></script>
+<script src="./assets/plugins/jquery/jquery.fly.min.js"></script>
+<script src="./assets/plugins/jquery/jquery-migrate.min.js"></script>
+
+<!--Angular-->
+<script src="./assets/plugins/angular/angular.min.js"></script>
+<script src="./assets/plugins/angular/angular-route.min.js"></script>
+<script src="./assets/plugins/angular/angular-cookies.min.js"></script>
+<script src="./assets/plugins/angular-translate/angular-translate.min.js"></script>
+<script src="./assets/plugins/angular-translate/angular-translate-loader-static-files.min.js"></script>
+
+<!--Bootstrap-->
+<script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="./assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+
+<!-- JS Page Level -->
+<script src="./assets/js/jquery.qrcode.min.js"></script>
+<script src="./assets/js/baidu_statistics.js"></script>
+
+<!--Server-->
+<script src="./config/System_Config.js"></script>
+<script src="./service/base_service.js"></script>
+<script src="./module/app_module.js"></script>
+<script src="./service/host_service.js"></script>
+<script src="./service/http_service.js"></script>
+<script src="./service/directive_service.js"></script>
+<script src="./service/lan.js"></script>
+<script src="./service/route_service.js"></script>
+<script src="./service/sharedData_service.js"></script>
+
+<!--scroll-trigger-->
+<script src="./assets/plugins/scroll-trigger/scroll-trigger.min.js"></script>
+
+<!--jq_scroll-->
+<script src="./assets/plugins/jq_scroll/jq_scroll.js"></script>
+
+<script src="./assets/plugins/typeahead.js/typeahead.bundle.min.js"></script>
+<!--<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>-->
+
+<!--Controller-->
+<!-- build:js js/mp-g.jjc.js -->
+<script src="./controller/header_controller.js"></script>
+<script src="./controller/home2_controller.js"></script>
+<script src="./controller/home_jjc_controller.js"></script>
+<!-- endbuild -->
+</body>
+</html>

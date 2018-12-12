@@ -1,0 +1,159 @@
+/*网站所有颜色提取*/
+a,
+a:hover,
+.color-change,
+.breadcrumb-v5 li.active, .breadcrumb-v5 li a:hover,
+.header-v5 .shop-badge.badge-icons i,
+.header-v5 .navbar-default .navbar-nav > li:hover > a,
+.header-v5 li.subtotal .subtotal-cost,
+.log-reg-v3 .checkbox input + i:after,
+.add-to-wishlist a:hover, .add-to-wishlist .wishlist-in:hover i, .add-to-wishlist .compare-in:hover i,.header2-favorites,.fa-shopping-cart
+{
+    color: #ff000c ;
+
+}
+.bgcolor-change,
+.grid-list-icons i,
+.product-service .product-service-heading,
+.header-v5 .dropdown-menu .active > a, .header-v5 .dropdown-menu li > a:hover,
+.header-v5 .shop-badge span.badge-sea,
+.btn-u.btn-u-sea-shop{
+    background-color: #ff000c !important;
+}
+
+.tab-v5 .nav-tabs > li.active > a,
+.tab-v5 .nav-tabs > li.active > a:hover,
+.tab-v5 .nav-tabs > li.active > a:focus,
+.bodercolor-change,
+.header-v5 .dropdown-menu,
+.log-reg-v3 .checkbox input:checked + i,
+.log-reg-v3 .checkbox input + i:after,
+.log-reg-v3 .checkbox i,
+.log-reg-v3 .checkbox input:focus + i
+{
+    border-color: #ff000c;
+}
+
+.header-v5 .navbar-default .navbar-nav > li > a:hover, .header-v5 .navbar-default .navbar-nav > .active > a,
+.header-v5 .badge-open{
+    border-top-color: #ff000c
+}
+.order-info-active{
+    background-color: #ff000c !important;
+}
+.breadcrumbs-v4 .breadcrumb-v4-in li.active, .breadcrumbs-v4 .breadcrumb-v4-in li a:hover{
+    color: #ff000c;
+}
+.weiXinHidde{
+    display: block;
+}
+.header-btn{
+    background-color: #ff000c;
+}
+.header-btn .btn-u{
+    background-color: #ff000c;
+}
+.header-input{
+    border: 2px solid #ff000c;
+}
+.breadcrumbs-v4 {
+    width: 100%;
+    padding: 25px 0;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: none;
+}
+.btn-u.btn-u-sea-shop:hover, .btn-u.btn-u-sea-shop:focus, .btn-u.btn-u-sea-shop:active, .btn-u.btn-u-sea-shop.active, .open .dropdown-toggle.btn-u.btn-u-sea-shop
+.btn-u:hover, .btn-u:focus, .btn-u:active, .btn-u.active, .open .dropdown-toggle.btn-u{
+    border-color: #ff000c;
+    background: #ff000c;
+}
+.font-color-chart{
+    color: #ff000c;
+    font-size: 20px
+}
+.userName{
+    margin-left: 20px;
+    color: #ff000c
+}
+.leave-out{
+    margin-left: 100px;
+    background-color: #ff000c
+}
+.noAccount{
+    color: #000000;
+}
+.erWeiText{
+    display: block;
+}
+.weiXinText{
+    display: none;
+}
+.icon-color{
+    color:#ff000c;
+}
+
+/*
+.goodClass{
+    float: left;
+    height: 100%;
+    padding-left: 0px;
+    padding-top: 30px;
+    margin-left: -23px;
+    width: 40%;
+}*/
+.product-ratings li .rating-selected{
+    color: #ff000c;
+}
+.header-v5 .navbar-default .navbar-nav > .open > a, .header-v5 .navbar-default .navbar-nav > .open > a:hover, .header-v5 .navbar-default .navbar-nav > .open > a:focus{
+    color: #ff000c;
+}
+.home-search-btn,.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    background:#ff000c;
+}
+.home-search-btn:hover,.home-search-btn:focus,.home-search-btn:visited{
+    background:#d31e00
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice, .select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+    background:#d31e00;
+    color: #ffffff;
+}
+.footer2{
+    background: #ffffff;
+    height: 65px;
+    width: 100%;
+    z-index: 0;
+    text-align: center;
+}
+.footer2 p{
+    width: 280px;
+    margin: 0 auto;
+    padding-top:22px;
+    color: #2A2A2A;
+    line-height: 16px;
+}
+
+.container-fluid{
+    margin: 0;
+}
+.foot2-content{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+.header-v5 .navbar-brand {
+    z-index: 1;
+    padding: 14px 10px 10px 15px;
+}
+.foot2-content .row{
+    margin: 0;
+}
+.padding-top-15{
+    padding-top: 15px;
+}
+.product-detail-padding{
+    padding-left: 0;
+    padding-right: 0;
+}

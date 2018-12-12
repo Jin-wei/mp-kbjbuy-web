@@ -1,0 +1,216 @@
+.headerView{
+    background-color: rgb(241,242,244);
+    height: 26px;
+}
+
+.headerView ul{
+    margin-top: 3px;
+}
+
+.headerView span{
+    color: rgb(94,95,96);
+}
+
+.headerView a{
+    color: rgb(94,95,96);
+    font-size: 12px;
+}
+
+.headerView .username{
+    color: rgb(167,168,169);
+}
+
+
+
+/*jjc header*/
+
+.jjc-header em {
+    font-style: normal
+}
+
+.jjc-header input {
+    font: 13px/1.5 SimHei, arial, sans-serif;
+    outline: 0;
+}
+
+.jjc-header {
+    width: 100%;
+    position: relative;
+    height: auto;
+    min-height: 148px;
+    font: 13px/1.5 SimHei, arial, sans-serif;
+}
+
+.jjc-header dd, .jjc-header dt, .jjc-header dl {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.header-width {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+}
+
+.header-black-width {
+    width: 100%;
+    margin: 0 auto;
+    background: #1C1A1C;
+    height: auto;
+}
+
+.jjc-header .header-black {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+    min-height: 40px;
+    line-height: 40px;
+    background: #1C1A1C;
+    color: #ffffff;
+
+}
+
+.jjc-header .header-black dd {
+    display: inline-block;
+    line-height: 40px;
+    float: left;
+}
+
+.jjc-header .header-black dt {
+    display: inline-block;
+    line-height: 40px;
+    float: right;
+    text-align: right;
+}
+
+.jjc-header .header-write {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    background: #ffffff;
+}
+
+.header-write .header-logo {
+    height: 76px;
+    padding-top: 5px;
+}
+
+.header-write .header-input-box {
+    float: left;
+    margin-right: 0;
+    margin-top: 20px;
+    padding: 0;
+    text-align: right;
+}
+
+.header-write .header-input-box input {
+    border-top: 2px solid #ffaa64;
+    border-left: 2px solid #ffaa64;
+    border-bottom: 2px solid #ffaa64;
+    border-right: 2px solid #cc9b66;
+    color: #757575;
+    border-radius: 0;
+    padding: 6px 10px;
+    outline:none!important;
+    box-shadow:none!important;
+}
+
+.header-write .header-input-box .input-group {
+    padding-right: 28px;
+}
+
+.header-write dd {
+    float: left;
+}
+
+.header-write dt {
+    display: inline-block;
+    float: right;
+    /*  width: 75%;*/
+    height: 83px;
+
+}
+
+.header-write .header-qq, .header-write .header-shop, .header-write .header-input-box {
+    float: right;
+    height: 100%;
+}
+
+.header-write .header-qq a, .header-write .header-shop a {
+    display: inline-block;
+    height: 100%;
+}
+
+.header-shop {
+    padding-left: 10px;
+}
+
+.header-write dt a img {
+    vertical-align: middle;
+}
+
+.header-write .search-btn {
+    background: #cc9b66;
+    border: 2px solid #cc9b66;
+    color: #fff;
+    border-radius: 0;
+    margin-left: -1px;
+    padding: 6px 9px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.header-write .search-btn:focus {
+    outline: 0;
+}
+
+.header-write .header-qq {
+    margin: 33px 20px 0 21px;
+}
+
+.header-shop-span {
+    padding-right: 20px;
+    color: #ca7821;
+    padding-left: 6px;
+    cursor: pointer;
+}
+
+.header-shop a {
+    display: inline-block;
+}
+.header-shop a:hover{
+    text-decoration: none;
+}
+
+
+@media screen and (max-width: 900px) {
+    /*header*/
+    .header-write .header-input-box {
+        margin-right: 0;
+    }
+
+    .header-write .header-logo {
+        padding-left: 5px;
+    }
+    .jjc-header .header-black dt {
+        text-align: center;
+    }
+
+    .jjc-header {
+        min-height: 100px;
+    }
+    .jjc-header .header-black dd{
+        display: none;
+    }
+
+    /*end header*/
+}
+@media screen and (max-width: 500px) {
+    .jjc-header {
+        min-height: 100px;
+    }
+
+}

@@ -1,0 +1,21 @@
+# robots.txt generated at http://tool.chinaz.com/robots/ 
+User-agent: Baiduspider
+Disallow:/indexApp.html#/*
+Disallow:/index.html#/*
+User-agent: YodaoBot
+Disallow:
+User-agent: Googlebot
+Disallow:
+User-agent: Teoma
+Disallow:
+User-agent: MSNBot
+Disallow:
+User-agent: Gigabot
+Disallow:
+User-agent: googlebot-image
+Disallow:
+User-agent: yahoo-blogs/v3.9
+Disallow:
+User-agent:*
+Disallow:/indexApp.html#/*
+Disallow:/index.html#/*

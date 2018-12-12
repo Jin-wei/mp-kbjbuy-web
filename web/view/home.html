@@ -1,0 +1,325 @@
+<div class="container-fluid pad">
+    <div id="carousel-banner" class="carousel" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="item" ng-repeat="banner in bannerImgUrl" ng-class="{true: 'active', false: ''}[ $index == 0]">
+                <!--<a href="/product?productId={{banner.prodId}}">-->
+                    <!--<img src="{{bannerImageService+banner.imgUrl}}">-->
+                <!--</a>-->
+                <a href="indexApp.html#/product/{{bannerList[$index].prodId}}/bizId/0">
+                    <img src="{{bannerImageService+banner}}">
+                </a>
+            </div>
+        </div>
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-banner" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-banner" data-slide-to="1"></li>
+            <li data-target="#carousel-banner" data-slide-to="2"></li>
+        </ol>
+        <a class="left carousel-control" href="#carousel-banner" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-banner" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="section">
+        <div>
+            <div ng-show="!isMobile" class="row">
+                <!--<div class="col-md-4 bottom" ng-repeat="c in category">-->
+                <!--<div class="overflow-h category" style="cursor: pointer">-->
+                <!--<a class="illustration-v3 illustration-img1"  ng-click="categoryClick(c.typeId)">-->
+                <!--<span class="textBg" style="background: url({{imageSize('l')+c.imgUrl}}) no-repeat center center;background-size:cover;">-->
+                <!--<span class="illustration-ads">-->
+                <!--<span class="illustration-v3-category">-->
+                <!--<span class="product-category" ng-bind="c.name"></span>-->
+                <!--&lt;!&ndash;<span class="product-amount">{{c.prod_count}} 种</span>&ndash;&gt;-->
+                <!--</span>-->
+                <!--</span>-->
+                <!--</span>-->
+                <!--</a>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div  class="heading heading-v1 margin-bottom-20 margin-top-20">
+                    <h2>精品分类</h2>
+                </div>
+                <div class="col-xs-4 div-9" ng-repeat="c in category">
+                    <div class="category-content" style="cursor: pointer">
+                        <a href="indexApp.html#/product_filter/{{c.typeId}}/type/1">
+                            <img src="{{imageSize('m')+c.imgUrl}}" style="height: 100%;float: left;width: 180px">
+                        </a>
+                            <div class="goodClass">
+                                <a class="goodClass-a" href="indexApp.html#/product_filter/{{c.typeId}}/type/1" style="display: inline-block">
+                                    <span style="font-size: 20px;display: block;color: #333333;" ng-bind="c.name"></span>
+                                    <p class="line bgcolor"></p>
+                                    <p class="description-pp" style="margin-top: 20px;" ng-bind="c.description"></p>
+                                </a>
+                            </div>
+                            <div style="float: right;height: 100%;">
+                                <a href="indexApp.html#/product_filter/{{c.typeId}}/type/1" style="display: inline-block;width: 100%;height: 100%;padding-right: 10px">
+                                    <div class="icon-color iconfont icon-arrowsgright" style="margin-top: 60px;font-size: 40px"></div>
+                                </a>
+                                <!--<img ng-src="jjc/assets/images/arrow-right.png" style="margin-top: 80px;">-->
+                            </div>
+                            <div class="clear"></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div ng-show="isMobile" class="row">
+                <div class="heading heading-v1 margin-bottom-20" style="margin-top: 20px">
+                    <h2>精品分类</h2>
+                </div>
+                <div class="{{(($index+1)%3==2)?'col-xs-4 padding-even':(($index+1)%3==1)?'col-xs-4 padding-1':'col-xs-4 padding-2'}}" ng-repeat="c in category" >
+                    <div style="overflow: hidden;cursor: pointer;text-align: center;margin-bottom: 20px;position: relative;min-height: 143px">
+                        <a  href="indexApp.html#/product_filter/{{c.typeId}}/type/1">
+                            <img class="img-responsive animation" src="{{imageSize('m')+c.imgUrl}}">
+                            <span ng-bind="c.name" style="font-size: 12px"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="heading heading-v1 margin-bottom-20">
+            <h2>特别推荐</h2>
+        </div>
+
+        <!--=== Illustration v2 ===-->
+        <div class="illustration-v2 margin-bottom-20">
+            <div class="customNavigation margin-bottom-25">
+                <a class="owl-btn prev rounded-x"><i class="fa fa-angle-left"></i></a>
+                <a class="owl-btn next rounded-x"><i class="fa fa-angle-right"></i></a>
+            </div>
+
+            <ul class="list-inline owl-slider">
+                <li class="item" ng-repeat="p in recommeds">
+                    <div class="product-img product-img-brd">
+                        <a href="indexApp.html#/product/{{p.prodId}}/bizId/0">
+                            <img ng-if="p.imgUrl" class="full-width img-responsive" src="{{imageSize('m')+p.imgUrl}}" alt="{{p.description}}{{p.imgDescription}}">
+                            <img ng-if="!p.imgUrl" class="full-width img-responsive" ng-src="jjc/assets/images/prodDefault240.jpg" alt="{{p.description}}">
+                        </a>
+                        <!--<a class="product-review" href="/product?productId={{p.prodId}}">快速查看</a>-->
+                        <!--<a class="add-to-cart" href="javascript:void(0);" ng-click="prodPush(p,1)"><i class="fa fa-shopping-cart"></i>加入购物车</a>-->
+                        <!--<button class="add-to-cart" type="button" id="{{'add-cart-btn'+$index}}" class="btn-u btn-u-sea-shop" ng-click="addShoppingCartClick(p,1,$index)">添加到购物车</button>-->
+
+
+                        <div ng-show="p.isNew" class="shop-rgba-dark-green rgba-banner">新品</div>
+                    </div>
+                    <div class="product-description product-description-brd margin-bottom-30">
+                        <div class="overflow-h">
+                            <div ng-show="isLogin" style="float: left">
+                                <span class="title-price">￥</span>
+                                <span class="red-price" ng-bind="p.price"></span>
+                            </div>
+                            <!--<div style="float: right">-->
+                            <!--<p style="font-size: 15px;color: rgb(182,182,182)" ng-bind="p.type"></p>-->
+                            <!--</div>-->
+                            <p ng-show="!isMobile" style="width: 100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;word-break:keep-all;font-size: 18px" ng-bind="p.productName"></p>
+                            <p ng-show="isMobile" class="prodName-p" style="font-size: 14px" ng-bind="p.productName"></p>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="{{isMobile?'margin-top--15':''}}">
+                            <a style="cursor:pointer;float: left;height: 30px;line-height: 30px" ng-show="ifHasInFavorite(p.prodId) == false" ng-click="addCollectionClick(p)">
+                                <!--<img ng-src="jjc/assets/images/encollection.png">-->
+                                <i class="iconfont icon-xinkong"></i>
+                                收藏
+                            </a>
+                            <a style="cursor:pointer;float: left;height: 30px;line-height: 30px" ng-show="ifHasInFavorite(p.prodId) == true" ng-click="deleteCollectionClick(p)">
+                                <!--<img ng-src="jjc/assets/images/collectioned.png">-->
+                                <i class="iconfont icon-xin"></i>
+                                收藏</a>
+                            <button ng-show="!isMobile" type="button" id="{{'add-cart-btn'+$index}}" class="btn-u btn-u-sea-shop bgcolor-change" ng-click="addShoppingCartClick(p,1,$index)"style="font-size: 13px;float: right;height: 30px;min-width: 80px;
+                                color: white;border: none;margin-top: -5px">加入购物车</button>
+                            <button ng-show="isMobile" type="button" id="{{'add-cart-btn'+$index}}" ng-click="addShoppingCartClick(p,1,$index)" style="font-size: 13px;height: 30px;border: none;float: right;background:none"><i  id="cart" class="fa fa-shopping-cart font-color-chart"></i></button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--=== End Illustration v2 ===-->
+        <div ng-show="!isMobile" class="home-footer">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-12">
+                    <div class="col-md-2">
+                        <div class="thumbnail" style="border: none">
+                            <div class="icon-color iconfont icon-shangpinfenlei" style="font-size: 100px;text-align: center;max-height: 110px"></div>
+                            <div class="caption">
+                                <h3 style="text-align: center;font-size: 16px">品类齐全</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="thumbnail" style="border: none;">
+                            <div class="icon-color iconfont icon-gongchangyuan" style="font-size: 100px;text-align: center;max-height: 110px"></div>
+                            <div class="caption">
+                                <h3 style="text-align: center;font-size: 16px">工厂直销</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="thumbnail" style="border: none">
+                            <div class="icon-color iconfont icon-zhengpin1" style="font-size: 100px;text-align: center;max-height: 110px"></div>
+                            <div class="caption">
+                                <h3 style="text-align: center;font-size: 16px">正品保障</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="thumbnail" style="border: none">
+                            <div class="icon-color iconfont icon-shangpinfenlei1" style="font-size: 100px;text-align: center;max-height: 110px"></div>
+                            <div class="caption">
+                                <h3 style="text-align: center;font-size: 16px">同城支持</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="thumbnail" style="border: none">
+                            <div class="icon-color iconfont icon-kefu" style="font-size: 100px;text-align: center;max-height: 110px"></div>
+                            <div class="caption">
+                                <h3 style="text-align: center;font-size: 16px">贴心服务</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" class="service-f">
+                    <div class="col-md-10" style="font-size: 16px;">
+                        <div class="col-md-2">
+                            <ul>
+                                <li><a style="text-decoration:none;color: #687074">下单指引</a></li>
+                                <li><a style="color: #687074" href="indexApp.html#/user_register_guide">用户注册</a></li>
+                                <li><a style="color: #687074" href="indexApp.html#/purchase_guide">购买流程</a></li>
+                                <li><a  style="color: #687074"href="indexApp.html#/serviceRegulation">使用规则</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2">
+                            <ul>
+                                <li><a style="text-decoration:none;color: #687074">关于支付</a></li>
+                                <li><a style="color: #687074" href="indexApp.html#/online_payment_guide">在线支付</a></li>
+                                <li><a style="color: #687074" href="indexApp.html#/cod_guide">货到付款</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2">
+                            <ul>
+                                <li><a style="text-decoration:none;color: #687074">配送流程</a></li>
+                                <li><a style="color: #687074" href="indexApp.html#/distribution_notice_guide">配送须知</a></li>
+                                <li><a style="color: #687074" href="indexApp.html#/distribution_range_guide">配送范围</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2">
+                            <ul>
+                                <li><a style="text-decoration:none;color: #687074">售后服务</a></li>
+                                <li><a style="color: #687074" href="indexApp.html#/server_info_guide">服务说明</a></li>
+                                <li><a style="color: #687074" href="indexApp.html#/server_detail_guide">服务细则</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2">
+                            <ul>
+                                <li><a style="text-decoration:none;color: #687074">关于我们</a></li>
+                                <li><a style="color: #687074" href="indexApp.html#/aboutUs">公司介绍</a></li>
+                                <li><a style="color: #687074" href="indexApp.html#/biz_settled_guide">商家入驻</a></li>
+                                <li><a style="color: #687074" href="indexApp.html#/contact_us_guide">联系我们</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="thumbnail" style="border: none">
+                                <img ng-src="jjc/assets/images/f-6.png" alt="" style="max-height: 150px;max-width: 150px">
+                                <div class="caption">
+                                    <h3  style="text-align: center;font-size: 16px">{{'erWeiMaText'| translate}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="media">
+                            <div class="media-left">
+                                <a>
+                                    <img class="media-object" ng-src="jjc/assets/images/f-7.png" style="width: 30px;height: 30px">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading" style="line-height: 30px;font-size: 16px">0756-6858865</h3>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <a>
+                                    <img class="media-object" ng-src="jjc/assets/images/f-8.png" style="width: 30px;height: 30px">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading" style="line-height: 30px;font-size: 16px">{{'QQ' | translate}}</h3>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <a>
+                                    <img class="media-object" ng-src="jjc/assets/images/f-9.png" style="width: 30px;height: 30px">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading" style="line-height: 30px;font-size: 16px">@{{'wei-bo' | translate}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="isMobile" class="home-footer">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="thumbnail" style="border: none">
+                        <img ng-src="jjc/assets/images/f-6.png" alt=""
+                             style="max-height: 150px;max-width: 150px">
+                        <div class="caption">
+                            <h3 style="text-align: center;font-size: 16px">{{'erWeiMaText'| translate}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6" style="margin-top: 15px">
+                    <div class="media" >
+                        <div class="media-left">
+                            <a>
+                                <img class="media-object" ng-src="jjc/assets/images/f-7.png"
+                                     style="width: 30px;height: 30px">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading" style="line-height: 30px;font-size: 15px">{{'phone' |
+                                translate}}</h3>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a>
+                                <img class="media-object" ng-src="jjc/assets/images/f-8.png"
+                                     style="width: 30px;height: 30px">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading" style="line-height: 30px;font-size: 15px">{{'QQ' |
+                                translate}}</h3>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a>
+                                <img class="media-object" ng-src="jjc/assets/images/f-9.png"
+                                     style="width: 30px;height: 30px">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading" style="line-height: 30px;font-size: 15px">@{{'wei-bo' |
+                                translate}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>

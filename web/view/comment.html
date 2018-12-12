@@ -1,0 +1,25 @@
+<div>
+    <div class="container">
+        <form>
+            <div class="row" ng-repeat="orderItem in orderItems" style="margin-top: 20px;">
+                <div class="col-md-4" style="border: 1px #eee solid;height: 120px;padding-top: 20px">
+                    <img class="img-responsive" style="width: 80px;height: 80px;float: left" src="{{orderItem.imgUrl}}" alt="">
+                    <div style="float: left;margin-left: 15px">
+                        <h5 ng-bind="orderItem.productName"></h5>
+                        <p ng-bind="orderItem.unitPrice"></p>
+                        <p>x <span ng-bind="orderItem.quantity"></span></p>
+                    </div>
+                </div>
+                <div class="col-md-8" style="border: 1px #eee solid;height: 120px">
+                    <div star rating-value="ratingVal"  max="5" readonly="{{readonly}}" style="float: left;margin-left: 10px;font-size: 20px"></div>
+                    <span style="float: left; margin-left: 10px;margin-top: 6px;color: #9c8061;" ><span id="{{'star'+$index}}" ng-bind="ratingVal"></span>分</span>
+                    <textarea id="{{'textarea'+$index}}" placeholder="商品是否给力,快分享你的心得吧~" style="margin: 10px 2%; width: 96%;height: 70px;resize: none;border: 1px #eee solid;"></textarea>
+                </div>
+            </div>
+            <div>
+                <input type="submit" ng-click="submitCommentClick()" class="step-btn" style="background-color: #9c8061;height: 35px;width: 150px;border: none;color: white;margin:0 auto;display:block; margin-top: 20px;margin-bottom: 20px" value="提交评价">
+            </div>
+        </form>
+
+    </div>
+</div>

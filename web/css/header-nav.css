@@ -1,0 +1,19 @@
+#headerDiv a{
+    color: white;
+    height: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+}
+
+#headerDiv ul li a:active{
+    background: rgb(61,26,19);
+}
+
+#headerDiv ul li a:hover{
+    background: rgb(61,26,19);
+}
+
+#headerDiv ul li a:visited{
+    background: rgb(61,26,19);
+}

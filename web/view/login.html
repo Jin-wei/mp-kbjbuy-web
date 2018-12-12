@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../Shop-UI/assets/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../Shop-UI/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Shop-UI/assets/plugins/angular/angular.min.js"></script>
+    <link href="../Shop-UI/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../Shop-UI/assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <img ng-src="jjc/assets/images/loginBg.jpg" class="img-responsive">
+        </div>
+        <div class="col-md-4" style="background: #7a6f6d; margin-top: 100px">
+            <div class="col-sm-12" style="background: black; border-bottom: thick solid #fb7407">
+                <h4 style="color:white;">请登录</h4>
+            </div>
+
+            <form class="form-horizontal" role="form">
+                <div class="input-group" style="margin-top: 70px; margin-bottom: 30px">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" style="margin-right: 100px" id="inputAccount" value="13591176501" placeholder="请输入账号名称" ng-model="account">
+                </div>
+                <div class="input-group" style="margin-bottom: 20px">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" id="inputPassword" value="1" placeholder="请输入账号密码" ng-model="password">
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox">记住当前账号
+                            </label>
+                            <a href="#" style="color: #2e8dff; float: right">|新用户 </a>
+                            <a href="#" style="color: #2e8dff; float: right">忘记密码</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="button" class="btn btn-group-justified" style="background-color: #fb7407" ng-click="login()">登录</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+//    var app = angular.module('login', []);
+//    app.controller('loginController', function($scope, $http) {
+//        $scope.login = function () {
+//            window.location.href = "home.html";
+//            $http({
+//                method: 'POST',
+//                url: 'http://123.56.234.68:8091/api/login',
+//                data: {
+//                    phone: '15502631559',
+//                    password: '11111111'
+//                }
+//            }).then(function successCallback(response) {
+//                console.log(response.)
+//
+//            }, function errorCallback(response) {
+//                console.log(response)
+//            });
+
+//            $http.post('http://123.56.234.68:8091/api/login', {phone: '15502631559', password: '11111111'})
+//                    .success(function (response) {
+//                        console.log(response);
+//                    });
+
+//               $http.post('http://123.56.234.68:8091/api/login', {phone: '15502631559', password: '11111111'}
+//               ).then(function successCallback(response) {
+//                    console.log(response.data.result.accessToken);
+//               },function errorCallback(response) {
+//
+//               });
+//        }
+//    });
+
+</script>
+</body>
+
+</html>

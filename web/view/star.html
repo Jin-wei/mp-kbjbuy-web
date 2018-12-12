@@ -1,0 +1,11 @@
+<ul class="list-inline product-ratings">
+    <li ng-show="score >= 1 || score==0"><i class="rating-selected fa fa-star" style="margin-left: 5px"></i></li>
+    <li ng-show="score >= 2 || score==0"><i class="rating-selected fa fa-star" style="margin-left: 5px"></i></li>
+    <li ng-show="score >= 3 || score==0"><i class="rating-selected fa fa-star" style="margin-left: 5px"></i></li>
+    <li ng-show="score >= 4 || score==0"><i class="rating-selected fa fa-star" style="margin-left: 5px"></i></li>
+    <li ng-show="score == 5 || score==0"><i class="rating-selected fa fa-star" style="margin-left: 5px"></i></li>
+    <li ng-show="(5-score) >=1 && score!=0"><i class="rating fa fa-star" style="margin-left: 5px"></i></li>
+    <li ng-show="(5-score) >=2 && score!=0"><i class="rating fa fa-star" style="margin-left: 5px"></i></li>
+    <li ng-show="(5-score) >=3 && score!=0"><i class="rating fa fa-star" style="margin-left: 5px"></i></li>
+    <li ng-show="(5-score) >=4 && score!=0"><i class="rating fa fa-star" style="margin-left: 5px"></i></li>
+</ul>

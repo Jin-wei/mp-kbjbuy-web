@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /web/view/orderInfo.html
+Disallow: /web/view/my-orders.html

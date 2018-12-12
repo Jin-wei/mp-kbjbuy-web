@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" ng-app="app_module">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="P3P" content='CP="IDC DSP COR CURa ADMa  OUR IND PHY ONL COM STA"'>
+
+    <title id="html-title"></title>
+    <link rel="shortcut icon" ng-href="jjc/assets/images/favicon.ico"/>
+    <meta name="keywords" id="header-keywords" content="{{'html-keywords' | translate}}">
+    <meta name="description" id="header-description" content="{{'html-description' | translate}}">
+    <link rel="stylesheet" href="./Shop-UI/assets/plugins/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="./assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./Shop-UI/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="./Shop-UI/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+    <link rel="stylesheet" href="./Shop-UI/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+    <link rel="stylesheet" href="./Shop-UI/assets/plugins/master-slider/quick-start/masterslider/style/masterslider.css">
+    <link rel='stylesheet' href="./Shop-UI/assets/plugins/master-slider/quick-start/masterslider/skins/default/style.css">
+    <link rel="stylesheet" href="./Shop-UI/assets/plugins/jquery-steps/css/custom-jquery.steps.css">
+
+    <!--&lt;!&ndash; CSS Implementing Plugins &ndash;&gt;-->
+    <link rel="stylesheet" href="./Shop-UI/assets/plugins/animate.css">
+    <link rel="stylesheet" href="./Shop-UI/assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="./Shop-UI/assets/plugins/noUiSlider/jquery.nouislider.min.css">
+    <link rel="stylesheet" href="./Shop-UI/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="./assets/plugins/select2/select2.min.css">
+
+    <link rel="stylesheet" href="./Shop-UI/assets/css/shop.style.css">
+
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="./Shop-UI/assets/css/headers/header-v5.css">
+    <link rel="stylesheet" href="./Shop-UI/assets/css/footers/footer-v4.css">
+
+    <!--&lt;!&ndash; CSS Page Style &ndash;&gt;-->
+    <link rel="stylesheet" href="./Shop-UI/assets/css/pages/log-reg-v3.css">
+
+    <!--&lt;!&ndash; Style Switcher &ndash;&gt;-->
+    <link rel="stylesheet" href="./Shop-UI/assets/css/plugins/style-switcher.css">
+
+    <!--&lt;!&ndash; CSS Theme &ndash;&gt;-->
+    <link rel="stylesheet" href="./Shop-UI/assets/css/theme-colors/default.css" id="style_color">
+    <link rel="stylesheet" href="./Shop-UI/assets/css/theme-colors/brown.css">
+    <link rel="stylesheet" href="./assets/plugins/typeahead.js/typeahead.css">
+    <link rel="stylesheet" href="./Shop-UI/assets/css/custom.css">
+
+    <!--&lt;!&ndash; CSS Customization &ndash;&gt;-->
+    <!-- build:css css/mp-g.two.css -->
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/order-address.css">
+    <link rel="stylesheet" href="./css/order-pay.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/header-nav.css">
+    <link rel="stylesheet" href="./css/star.css">
+    <link rel="stylesheet" href="./css/logisitic-tracking.css">
+    <link rel="stylesheet" href="./css/orderInfo.css">
+    <link rel="stylesheet" href="./css/product_filter.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/home2.css">
+    <!-- endbuild -->
+    <link rel="stylesheet" ng-href="jjc/css/style.css" >
+    <base href="/">
+</head>
+<body>
+<div>
+    <!--<div id="page-loader" class="fade in"><span class="spinner"></span></div>-->
+    <header ng-if="('header' | translate)=='header1' || ('header' | translate)=='header'"></header>
+    <header2 ng-if="('header' | translate)=='header2'"></header2>
+
+    <!--<header-search ng-if="headerSearch == 1"></header-search>-->
+    <!--<header-nav ng-if="headerNav == 1"></header-nav>-->
+    <div class="{{isMobile?'':'width13'}} padding-top-15">
+        <home2></home2>
+    </div>
+    <footer></footer>
+    <div ng-show="isMobile" class="col-xs-12" style="position: fixed;bottom: 0px;
+         background:black ;z-index: 999999;height: 70px">
+        <div class="row" style="text-align: center;margin: 0px">
+            <div style="width: 20%;float:left;margin-top: 15px">
+                <a href="/">
+                    <div class="icon-color iconfont icon-shouye1" style="font-size: 22px"></div>
+                    <div style="font-size: 10px;">
+                        <span>首页</span>
+                    </div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="/orderInfo">
+                    <div class="icon-color iconfont icon-gouwuche" style="font-size: 22px"></div>
+                    <div style="width: 100%;font-size: 10px;margin-top: 2px">
+                        <span>购物车</span>
+                    </div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=3420999385&site=qq&menu=yes">
+                    <div class="icon-color iconfont icon-kefu1" style="font-size: 22px"></div>
+                    <div style="font-size: 10px;"><span>在线客服</span></div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="/my_prodList">
+                    <div class="icon-color iconfont icon-changyong" style="font-size: 22px"></div>
+                    <div style="width: 100%;font-size: 10px;margin-left: 0;margin-top: 2px;">
+                        <span>常用产品</span>
+                    </div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="/personal_center">
+                    <div class="icon-color iconfont icon-wode" style="font-size: 22px"></div>
+                    <div style="font-size: 10px;margin-left: 3px">
+                        <span>我的</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--JQuery-->
+<script src="./assets/plugins/jquery/jquery.min.js"></script>
+<script src="./assets/plugins/jquery/jquery.fly.min.js"></script>
+<script src="./assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="./Shop-UI/assets/plugins/noUiSlider/jquery.nouislider.all.min.js"></script>
+<script src="./Shop-UI/assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="./Shop-UI/assets/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
+<script src="./Shop-UI/assets/plugins/master-slider/quick-start/masterslider/jquery.easing.min.js"></script>
+<script src="./Shop-UI/assets/plugins/jquery-steps/build/jquery.steps.js"></script>
+<script src="./Shop-UI/assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
+
+<!--Angular-->
+<script src="./assets/plugins/angular/angular.min.js"></script>
+<script src="./assets/plugins/angular/angular-route.min.js"></script>
+<script src="./assets/plugins/angular/angular-cookies.min.js"></script>
+<script src="./assets/plugins/angular-translate/angular-translate.min.js"></script>
+<script src="./assets/plugins/angular-translate/angular-translate-loader-static-files.min.js"></script>
+
+
+<!--Bootstrap-->
+<script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="./assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="./Shop-UI/assets/plugins/back-to-top.js"></script>
+<script src="./Shop-UI/assets/plugins/smoothScroll.js"></script>
+<script src="./Shop-UI/assets/plugins/respond.js"></script>
+<script src="./Shop-UI/assets/plugins/html5shiv.js"></script>
+<script src="./Shop-UI/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+<script src="./Shop-UI/assets/plugins/master-slider/quick-start/masterslider/masterslider.min.js"></script>
+
+
+<!-- JS Page Level -->
+<script src="./Shop-UI/assets/js/plugins/mouse-wheel.js"></script>
+<script src="./Shop-UI/assets/js/plugins/placeholder-IE-fixes.js"></script>
+<script src="./Shop-UI/assets/js/plugins/master-slider.js"></script>
+<script src="./Shop-UI/assets/js/plugins/owl-carousel.js"></script>
+<script src="./Shop-UI/assets/js/forms/page_login.js"></script>
+<script src="./Shop-UI/assets/js/plugins/stepWizard.js"></script>
+<script src="./Shop-UI/assets/js/forms/product-quantity.js"></script>
+<script src="./assets/js/jquery.qrcode.min.js"></script>
+<!-- JS Customization -->
+<script src="./Shop-UI/assets/js/custom.js"></script>
+<script src="./Shop-UI/assets/js/shop.app.js"></script>
+<script src="./assets/plugins/select2/select2.min.js"></script>
+<script src="./assets/plugins/select2/zh-CN.js"></script>
+<!--Server-->
+<script src="./config/System_Config.js"></script>
+<script src="./service/base_service.js"></script>
+<script src="./module/app_module.js"></script>
+<script src="./service/host_service.js"></script>
+<script src="./service/http_service.js"></script>
+<script src="./service/directive_service.js"></script>
+<script src="./service/lan.js"></script>
+<script src="./service/route_service.js"></script>
+<script src="./service/sharedData_service.js"></script>
+
+<!--scroll-trigger-->
+<script src="./assets/plugins/scroll-trigger/scroll-trigger.min.js"></script>
+
+<script src="./assets/plugins/typeahead.js/typeahead.bundle.min.js"></script>
+<!--<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>-->
+
+<!--Controller-->
+<!-- build:js js/mp-g.two.js -->
+<script src="./controller/login_controller.js"></script>
+<script src="./controller/register_controller.js"></script>
+<script src="./controller/forgotten_password_controller.js"></script>
+<script src="./controller/change_phone_controller.js"></script>
+<script src="./controller/home_controller.js"></script>
+<script src="./controller/product_filter_controller.js"></script>
+<script src="./controller/product_controller.js"></script>
+<script src="./controller/shoppingcart_controller.js"></script>
+<script src="./controller/orderInfo_controller.js"></script>
+<script src="./controller/order_address_controller.js"></script>
+<script src="./controller/order_pay_controller.js"></script>
+<script src="./controller/alipay_controller.js"></script>
+<script src="./controller/my_orders_controller.js"></script>
+<script src="./controller/comment_controller.js"></script>
+<script src="./controller/logisitic_tracking_controller.js"></script>
+<script src="./controller/about_us_controller.js"></script>
+<script src="./controller/service_regulation_controller.js"></script>
+<script src="./controller/pay_success_controller.js"></script>
+<script src="./controller/my_collection_controller.js"></script>
+<script src="./controller/my_prod_list_controller.js"></script>
+<script src="./controller/personal_center_controller.js"></script>
+<script src="./controller/tv_controller.js"></script>
+<script src="./controller/header_controller.js"></script>
+<script src="./controller/home2_controller.js"></script>
+<script src="./controller/orderInfo2_controller.js"></script>
+<script src="./controller/set_cookie_controller.js"></script>
+<!-- endbuild -->
+<script>
+    $(document).ready(function() {
+        App.init();
+    });
+</script>
+
+</body>
+</html>

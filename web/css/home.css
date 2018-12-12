@@ -1,0 +1,86 @@
+
+.bottom {
+    margin-bottom: 30px;
+}
+
+.div-9{
+    height: 180px;
+    margin-bottom: 30px;
+}
+.category-content{
+    height: 100%;
+    border: 1px solid rgb(222,223,224);
+}
+.line{
+    background-color: #9c8061;
+    height: 1px;
+    width: 30px;
+    margin-top: 10px;
+}
+
+.category {
+    background-repeat: no-repeat;
+}
+
+.illustration-v3 {
+    display: block;
+    overflow: hidden;
+    min-height: 250px;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+}
+
+.textBg {
+    width: 100%;
+    display: table;
+    min-height: 250px;
+    background-clip: padding-box;
+}
+
+.pad {
+    padding-left: 5%;
+    padding-right:5%;
+}
+.service-f{
+
+}
+
+.animation:hover {
+    -transform: scale(1.05);
+    -o-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+}
+
+.img-1{
+    float: left;
+    width: 46%;
+}
+
+
+@media screen and (min-width: 0px) and (max-width: 1360px)  {
+    .width13{
+        min-width: 1360px;
+    }
+}
+
+@media screen and (min-width: 1650px) and (max-width: 1900px)  {
+    .img-1{
+        width: 46%;
+    }
+}
+@media screen and (min-width: 1250px) and (max-width: 1650px)  {
+    .img-1{
+        margin-top: 5px;
+        width: 45%;
+    }
+}
+@media (max-width: 1250px){
+    .img-1{
+        margin-top: 10px;
+        width: 44%;
+    }
+}
+
+

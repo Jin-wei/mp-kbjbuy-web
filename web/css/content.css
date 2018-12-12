@@ -1,0 +1,244 @@
+.jjc-nav{
+    background: #ffffff;
+}
+.jjc-footer{
+    background: #ffffff;
+    position: inherit;
+}
+.footer-copyright{
+    color:#888 ;
+    padding-bottom: 0;
+    line-height: 30px;
+    margin: 0 0 10px;
+    font-size: 14px;
+}
+.footer-copyright a{
+    color:#888;
+}
+
+/*content*/
+.content-banner,.content-list{
+    padding: 0;
+    margin: 0;
+}
+.content-banner div img, .content-banner .banner-img{
+    display: inline;
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    overflow: hidden;
+}
+
+.content-banner:after{
+    clear: both;
+}
+.content-list{
+    z-index: 2;
+    margin-top: 29px;
+}
+.content-list>ul>li>a{
+    font-size: 18px;
+    background:#ffffff;
+    color: #292929;
+    border-radius: 0;
+    padding: 7px 23px;
+    border:none;
+    border-bottom: 1px solid transparent;
+    margin: 0;
+}
+.content-list .nav-tabs{
+    border-bottom: 1px solid #8f6d49;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    color: #fff;
+    cursor: default;
+    background-color: #8f6d49;
+    border: 1px solid #8f6d49;
+    border-bottom: none;
+}
+.nav-tabs>li{
+    margin-bottom: 0px;
+}
+.content-img{
+    width: 22%;
+    height: auto;
+    padding: 0;
+    margin: 0 0 10px 0;
+    float: left;
+
+}
+.content-img img{
+    width: 100%;
+    height: auto;
+}
+.content-text{
+    width: 78%;
+    padding: 9px 0 0 29px;
+    margin: 0;
+    float: left;
+}
+.content-text h3{
+    font-size: 19px;
+    margin-top: 10px;
+    padding: 0;
+}
+.content-text p{
+    /*padding: 3px 0 0 0;
+    display: inline-block;*/
+    width: 100%;
+    font-size: 17px;
+    color: #676767;
+    min-height: 30px;
+    max-height: 105px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:3;
+    padding: 3px 0 0 0;
+
+}
+.content-ul li{
+    position: relative;
+    width: 100%;
+    min-height:170px;
+    height:auto!important;
+    height:210px;
+    padding:30px 0 0 0;
+    border-bottom: 1px solid #292929;
+    overflow: hidden;;
+}
+.content-date{
+    margin: 10px 0 0 0;
+    font-size: 19px;
+    font-weight: 500;
+    padding: 0;
+    text-align: right;
+}
+.no-margin{
+    padding: 0;
+    margin: 0;
+}
+.jjc-pagination{
+    vertical-align: middle;
+    margin-bottom: 50px;
+}
+.jjc-pagination>.active>a, .jjc-pagination>.active>a:focus, .jjc-pagination>.active>a:hover, .jjc-pagination>.active>span, .jjc-pagination>.active>span:focus, .jjc-pagination>.active>span:hover{
+    color: #ffffff;
+    background-color: #8f6d49;
+    border-color:#8f6d49 ;
+}
+.pageButton{
+    border-radius: 5px;
+    color: #fff;
+    border: 1px solid #8f6d49;
+    cursor: default;
+    background-color: #ffffff;
+    padding: 1px 10px;
+    min-width: 100px;
+}
+.page-total{
+    display: inline-block;
+    margin-right: 10px;
+    line-height: 24px;
+    float: left;
+}
+.jjc-pagination .dropdown{
+    float: left;
+}
+.jjc-pagination .dropdown-menu{
+    min-width: 100px;
+    text-align: center;
+}
+
+
+/*detail*/
+.c-min-height{
+    border-top: 1px solid #cccccc;
+}
+.c-min-height .c-detail-title h1{
+    text-align: center!important;
+    display: block;
+    font-size: 21px;
+    margin: 10px 0 12px 0;
+}
+.c-min-height .c-detail-span{
+    font-size: 16px;
+    text-align: center!important;
+    display: block;
+    margin:0 0 30px 0;
+}
+.c-return-page{
+    margin: 15px 0;
+}
+.c-min-height .c-return-page a{
+    color:#8f6d49;
+}
+.c-detail{
+    min-height: 340px;
+    margin-bottom: 50px;
+    display: block;
+}
+.jjc-nav .jjc-nav-ul{
+    padding: 0 0 0 28%;
+}
+
+@media screen and (max-width: 991px) {
+    .content-date{
+        text-align: left;
+    }
+    .content-text h3,.content-date{
+        font-size: 16px;
+        margin: 0 5px;
+    }
+    .content-img{
+        width: 30%;
+    }
+    .content-text{
+        width: 70%;
+    }
+    .content-text p{
+        margin-left: 5px;
+    }
+    .jjc-nav .jjc-nav-ul{
+        padding: 0 0 0 0;
+    }
+
+
+}
+
+
+@media screen and (max-width: 500px) {
+    .content-date{
+        text-align: left;
+    }
+    .content-ul li{
+        max-height: 155px;
+    }
+    .content-img{
+        width: 30%;
+    }
+    .content-text{
+        width: 60%;
+    }
+    .content-text{
+        padding: 1px 0 0 10px;
+    }
+    .content-text h3,.content-date{
+        font-size: 16px;
+        margin: 0 5px;
+    }
+    .content-text p{
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    /*detail*/
+
+    .c-return-page{
+         margin: 0;
+    }
+    .c-min-height .c-detail-title,.c-detail{
+        padding: 0 5px;
+    }
+}

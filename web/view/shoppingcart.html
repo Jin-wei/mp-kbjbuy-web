@@ -1,0 +1,130 @@
+
+<div class="wrapper">
+    <!--=== Content Medium Part ===-->
+    <div class="margin-bottom-30">
+        <div class="container" style="background-color:rgb(255,245,245); padding-bottom: 50px;padding-left: 0px;padding-right: 0px">
+            <form class="shopping-cart">
+                <div>
+                    <section>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>产品</th>
+                                    <th>单价</th>
+                                    <th>数量</th>
+                                    <th>合计</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input type="checkbox" name="productBox"></td>
+                                    <td class="product-in-table">
+                                        <img class="img-responsive" src="../Shop-UI/assets/img/thumb/08.jpg" alt="">
+                                        <div class="product-it-in">
+                                            <h3>Double-Breasted</h3>
+                                            <span>Sed aliquam tincidunt tempus</span>
+                                        </div>
+                                    </td>
+                                    <td>￥ 160.00</td>
+                                    <td>
+                                        <button type='button' class="quantity-button" name='subtract' onclick='javascript: subtractQty1();' value='-'>-</button>
+                                        <input type='text' class="quantity-field" name='qty1' value="5" id='qty1'/>
+                                        <button type='button' class="quantity-button" name='add' onclick='javascript: document.getElementById("qty1").value++;' value='+'>+</button>
+                                    </td>
+                                    <td class="shop-red">￥ 320.00</td>
+                                    <td>
+                                        <button type="button" class="close"><span>&times;</span><span class="sr-only">Close</span></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="productBox"></td>
+                                    <td class="product-in-table">
+                                        <img class="img-responsive" src="../Shop-UI/assets/img/thumb/07.jpg" alt="">
+                                        <div class="product-it-in">
+                                            <h3>Vivamus ligula</h3>
+                                            <span>Sed aliquam tincidunt tempus</span>
+                                        </div>
+                                    </td>
+                                    <td>$ 160.00</td>
+                                    <td>
+                                        <button type='button' class="quantity-button" name='subtract' onclick='javascript: subtractQty2();' value='-'>-</button>
+                                        <input type='text' class="quantity-field" name='qty2' value="3" id='qty2'/>
+                                        <button type='button' class="quantity-button" name='add' onclick='javascript: document.getElementById("qty2").value++;' value='+'>+</button>
+                                    </td>
+                                    <td class="shop-red">$ 320.00</td>
+                                    <td>
+                                        <button type="button" class="close"><span>&times;</span><span class="sr-only">Close</span></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="productBox"></td>
+                                    <td class="product-in-table">
+                                        <img class="img-responsive" src="../Shop-UI/assets/img/thumb/06.jpg" alt="">
+                                        <div class="product-it-in">
+                                            <h3>Vivamus ligula</h3>
+                                            <span>Sed aliquam tincidunt tempus</span>
+                                        </div>
+                                    </td>
+                                    <td>$ 160.00</td>
+                                    <td>
+                                        <button type='button' class="quantity-button" name='subtract' onclick='javascript: subtractQty3();' value='-'>-</button>
+                                        <input type='text' class="quantity-field" name='qty3' value="1" id='qty3'/>
+                                        <button type='button' class="quantity-button" name='add' onclick='javascript: document.getElementById("qty3").value++;' value='+'>+</button>
+                                    </td>
+                                    <td class="shop-red">$ 320.00</td>
+                                    <td>
+                                        <button type="button" class="close"><span>&times;</span><span class="sr-only">Close</span></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="productBox"></td>
+                                    <td class="product-in-table">
+                                        <img class="img-responsive" src="../Shop-UI/assets/img/thumb/09.jpg" alt="">
+                                        <div class="product-it-in">
+                                            <h3>Vivamus ligula</h3>
+                                            <span>Sed aliquam tincidunt tempus</span>
+                                        </div>
+                                    </td>
+                                    <td>$ 160.00</td>
+                                    <td>
+                                        <button type='button' class="quantity-button" name='subtract' onclick='javascript: subtractQty4();' value='-'>-</button>
+                                        <input type='text' class="quantity-field" name='qty4' value="7" id='qty4'/>
+                                        <button type='button' class="quantity-button" name='add' onclick='javascript: document.getElementById("qty4").value++;' value='+'>+</button>
+                                    </td>
+                                    <td class="shop-red">$ 320.00</td>
+                                    <td>
+                                        <button type="button" class="close"><span>&times;</span><span class="sr-only">Close</span></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+                <div class="payment" style="background-color: rgb(237,237,237);height: 100px;">
+                    <div class="col-sm-12">
+                        <div class="col-sm-6">
+                            <div style="margin-top: 40px;">
+                                <button ng-click="clickAllSelected()" style="border: none;background: none"><input type="checkbox" id="selectAll"></button>
+                                <span>全选</span>
+                                <input type="button" value="批量删除">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="submit" value="去结算" ng-click="goPay()" style="float:right;margin-top: 35px;border: 1px solid rgb(231,0,5);background-color: rgb(250,26,42);color: white;font-size: 10px;padding: 5px 20px">
+                            <div class="total-price" style="float:right; height: 100px;width: auto;padding-top: 30px;margin-right: 10px">
+                                <span style="float:right;">商品总计<strong style="color: red">￥57.00</strong></span><br/>
+                                <p style="float:right;">(不含运费)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!--/end container-->
+
+    </div>
+    <!--=== End Content Medium Part ===-->
+
+</div><!--/wrapper-->

@@ -1,0 +1,66 @@
+<div class="container-fluid pad" style="padding: 0;">
+    <div class="col-md-12 col-xs-12" style="padding: 0;margin: 0">
+        <div class="home2-content">
+            <div id="carousel-banner" class="carousel" data-ride="carousel">
+                <div class="carousel-inner home2-banner" role="listbox">
+                    <div class="item" ng-if="bannerImgUrl.length>0" ng-repeat="banner in bannerImgUrl" ng-class="{true: 'active', false: ''}[ $index == 0]">
+                        <a href="" ng-click="bannerLinkToProduct($index)">
+                            <div class="banner-img" style="background:url({{bannerImageService+banner}}) center no-repeat"></div>
+                        </a>
+                    </div>
+                    <div class="item active" ng-if="bannerImgUrl.length==0">
+                        <div class="banner-img" style="background:url(jjc/assets/images/banner.jpg) center no-repeat"></div>
+                    </div>
+                </div>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-banner" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-banner" data-slide-to="1"></li>
+                    <li data-target="#carousel-banner" data-slide-to="2"></li>
+                </ol>
+                <a class="left carousel-control" href="#carousel-banner" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-banner" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div ng-show="isMobile" class="input-group center-mobile-search" style="margin-top: 65%;">
+                <div>
+                    <select id="selectMbProduct" type="text" class="typeahead header-input form-control search-input"
+                            name="states[]" multiple="multiple">
+                    </select>
+                </div>
+
+                <div class="input-group-btn header-btn">
+                    <button class="btn-u btn-lg home-search-btn" type="button"
+                            ng-click="home2Search()">立即查询
+                    </button>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div ng-show="!isMobile" class="center-search col-md-6  col-xs-12 col-md-offset-3">
+                <div class="input-group">
+                    <div>
+                        <select id="selectPcProduct" type="text"
+                                class="typeahead form-control header-input bodercolor-change search-input"
+                                name="states[]"
+                                multiple="multiple">
+                        </select>
+                    </div>
+                    <!--<input id="webProdcutSearch" type="text" class="typeahead form-control header-input bodercolor-change search-input" placeholder="{{'header-search-placeholder' | translate}}" ng-keyup="enterEvent($event)" ng-model="keyword">-->
+                    <div class="input-group-btn header-btn bgcolor-change">
+                        <button class="btn-u  btn-lg home-search-btn bgcolor-change" type="button"
+                                ng-click="home2Search()">立即查询
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+    <set-cookie></set-cookie>
+</div>

@@ -1,0 +1,81 @@
+
+<div class="wrapper">
+    <!--=== Content Part ===-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-description-brd" style="height: 50px;background-color: rgb(249,248,246)">
+                    <input class="allSelect" type="checkbox" style="margin-left: 20px;float: left;margin-top: 20px">
+                    <span style="margin-left: 20px;float: left;margin-top: 15px">全选</span>
+                </div>
+                <div>
+                    <div class="product-description-brd margin-bottom-30" style="height: 100px;" ng-repeat="p in products">
+                        <div ng-if="!isMobile" class="row">
+                            <div style="float: left;margin-top: 45px;margin-left: 28px">
+                                <input name="checkbox" value="{{p}}" type="checkbox">
+                            </div>
+                            <div style="height: 100px;width: 100px;float: left;margin-left: 20px">
+                                <a ng-click="gotoDetail(p.prodId,p.bizId)">
+                                    <img ng-if="p.imgUrl" class="img-responsive" ng-src="{{imageService+p.imgUrl}}" alt="">
+                                    <img ng-if="!p.imgUrl" class="img-responsive" ng-src="jjc/assets/images/prodDefault240.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="product-description" style="float: left">
+                                <div class="overflow-h margin-bottom-5">
+                                    <ul class="list-inline overflow-h">
+                                        <li><h4 class="title-price"><a ng-click="gotoDetail(p.prodId,p.bizId)" ng-bind="p.prodName"></a></h4></li>
+                                        <li><span class="gender text-uppercase" ng-bind="p.type"></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="float: right;margin-top: 35px;margin-right: 40px;font-size: 18px">
+                                <button type='button' style="width: 35px;height: 35px;float: left;border: 1px solid #8e8e8e;background-color: rgb(244,244,244)"  ng-click="increaseClick(p)" value='-'>-</button>
+                                <input type='text' style="text-align: center;width: 80px;height: 35px;float: left;border: 1px solid #8e8e8e" ng-model="p.num" ng-change="changeNum()"/>
+                                <button type='button' style="width: 35px;height: 35px;float: left;border: 1px solid #8e8e8e;background-color: rgb(244,244,244)" ng-click="plusClick(p)" value='+'>+</button>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+
+                        </div>
+                        <div ng-if="isMobile" class="row">
+                            <div style="float: left;margin-top: 35px;margin-left: 20px">
+                                <input name="checkbox" value="{{p}}" type="checkbox">
+                            </div>
+                            <div style="height: 80px;width: 80px;float: left;margin-left: 10px">
+                                <a ng-click="gotoDetail(p.prodId,p.bizId)">
+                                    <img ng-if="p.imgUrl" class="img-responsive" ng-src="{{imageService+p.imgUrl}}" alt="">
+                                    <img ng-if="!p.imgUrl" class="img-responsive" ng-src="jjc/assets/images/prodDefault240.jpg" alt="">
+                                </a>
+                            </div>
+                            <div style="float: left;margin-left: 10px">
+                                <p class="prodName-p" style="width: 170px;margin-top: 10px">
+                                    <a ng-click="gotoDetail(p.prodId,p.bizId)" ng-bind="p.prodName"></a>
+                                </p>
+                                <!--<p style="font-size: 12px;height: 18px;margin-top: -10px">-->
+                                    <!--<a ng-click="gotoDetail(p.prodId,p.bizId)" >asdfasdfasdfasdfasdfasdf</a>-->
+                                <!--</p>-->
+                                <div style="margin-top: -5px;font-size: 13px">
+                                    <button type='button' style="width: 25px;height: 25px;float: left;border: 1px solid #8e8e8e;background-color: rgb(244,244,244)"  ng-click="increaseClick(p)" value='-'>-</button>
+                                    <input type='text' style="text-align: center;width: 50px;height: 25px;float: left;border: 1px solid #8e8e8e" ng-model="p.num" ng-change="changeNum()"/>
+                                    <button type='button' style="width: 25px;height: 25px;float: left;border: 1px solid #8e8e8e;background-color: rgb(244,244,244)" ng-click="plusClick(p)" value='+'>+</button>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+
+                            <div class="clear"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="product-description-brd margin-bottom-30" style="height: 100px;">
+                    <input class="allSelect" type="checkbox" style="margin-left: 20px;float: left;margin-top: 40px">
+                    <span style="margin-left: 20px;float: left;margin-top: 35px">全选</span>
+                    <button style="float: right;margin-right: 40px;width: 100px;height: 30px;background: none;border: 1px solid #8e8e8e;margin-top: 35px" ng-click="nextClick()">下一步</button>
+                </div>
+                <!--/end filter resilts-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/end container-->
+    <!--=== End Content Part ===-->
+
+</div><!--/wrapper-->

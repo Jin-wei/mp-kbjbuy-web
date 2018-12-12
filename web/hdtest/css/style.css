@@ -1,0 +1,108 @@
+/*网站所有颜色提取*/
+a,
+a:hover,
+.color-change,
+.breadcrumb-v5 li.active, .breadcrumb-v5 li a:hover,
+.header-v5 .shop-badge.badge-icons i,
+.header-v5 .navbar-default .navbar-nav > li:hover > a,
+.header-v5 li.subtotal .subtotal-cost,
+.log-reg-v3 .checkbox input + i:after,
+.add-to-wishlist a:hover, .add-to-wishlist .wishlist-in:hover i, .add-to-wishlist .compare-in:hover i
+{
+    color: #d31e00 ;
+}
+.bgcolor-change,
+.grid-list-icons i,
+.product-service .product-service-heading,
+.header-v5 .dropdown-menu .active > a, .header-v5 .dropdown-menu li > a:hover,
+.header-v5 .shop-badge span.badge-sea,
+.btn-u.btn-u-sea-shop{
+    background-color: #d31e00 !important;
+}
+
+.tab-v5 .nav-tabs > li.active > a,
+.tab-v5 .nav-tabs > li.active > a:hover,
+.tab-v5 .nav-tabs > li.active > a:focus,
+.bodercolor-change,
+.header-v5 .dropdown-menu,
+.log-reg-v3 .checkbox input:checked + i,
+.log-reg-v3 .checkbox input + i:after,
+.log-reg-v3 .checkbox i,
+.log-reg-v3 .checkbox input:focus + i
+{
+    border-color: #d31e00;
+}
+
+.header-v5 .navbar-default .navbar-nav > li > a:hover, .header-v5 .navbar-default .navbar-nav > .active > a,
+.header-v5 .badge-open{
+    border-top-color: #d31e00
+}
+.order-info-active{
+    background-color: #d31e00 !important;
+}
+.breadcrumbs-v4 .breadcrumb-v4-in li.active, .breadcrumbs-v4 .breadcrumb-v4-in li a:hover{
+    color: #d31e00;
+}
+.weiXinHidde{
+    display: block;
+}
+.header-btn{
+    background-color: #d31e00;
+}
+.header-btn .btn-u{
+    background-color: #d31e00;
+}
+.header-input{
+    border: 2px solid #d31e00;
+}
+.breadcrumbs-v4 {
+    width: 100%;
+    padding: 25px 0;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url(../assets/images/breadcrumbs-img.png);
+}
+.btn-u.btn-u-sea-shop:hover, .btn-u.btn-u-sea-shop:focus, .btn-u.btn-u-sea-shop:active, .btn-u.btn-u-sea-shop.active, .open .dropdown-toggle.btn-u.btn-u-sea-shop
+.btn-u:hover, .btn-u:focus, .btn-u:active, .btn-u.active, .open .dropdown-toggle.btn-u{
+    border-color: #d31e00;
+    background: #d31e00;
+}
+.font-color-chart{
+    color: #d31e00;
+    font-size: 20px
+}
+.userName{
+    margin-left: 20px;
+    color: #d31e00
+}
+.leave-out{
+    margin-left: 100px;
+    background-color: #d31e00
+}
+.noAccount{
+    color: #000000;
+}
+.erWeiText{
+    display: block;
+}
+.weiXinText{
+    display: none;
+}
+.icon-color{
+    color:#d31e00;
+}
+.product-detail-padding{
+    padding-left: 0;
+    padding-right: 0;
+}
+/*
+.goodClass{
+    float: left;
+    height: 100%;
+    padding-left: 0px;
+    padding-top: 30px;
+    margin-left: -23px;
+    width: 40%;
+}*/

@@ -1,0 +1,136 @@
+<div >
+    <div class="header-fixed">
+        <!--=== Header v5 ===-->
+        <div style="height: 106px;width: 100%" ng-show="!isMobile"></div>
+        <div class="header-v5 float-header2">
+            <!-- Topbar v3 -->
+            <div class="topbar-v3  top-title" >
+                <div class="container">
+                    <div class="row">
+                        <div ng-show="!isMobile" class="col-sm-4" style="padding-left: 0">
+                            <ul class="list-inline">
+                                <li>
+                                    {{"header-left-title" | translate}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="{{isMobile?'col-sm-12':'col-sm-8'}}" style="padding-right: 0">
+                            <ul class="list-inline right-topbar pull-right" >
+                                <li>
+                                    <p ng-if="!isLogin &&!isMobile" style="margin-bottom: 0px"><a ng-href="indexApp.html#/login">登录</a> | <a ng-href="indexApp.html#/register">注册</a></p>
+                                </li>
+                                <li ng-if="isLogin && !isMobile"><a ng-bind="userName"></span></a></li>
+                                <li ng-if="isLogin && !isMobile"><button ng-click="logOut()" style="background: none;border: none">| &nbsp;&nbsp;&nbsp;退&nbsp;出</button></li>
+                                <li><a href="">{{'header-right-service' | translate}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--/container-->
+            </div>
+            <!-- End Topbar v3 -->
+
+            <div class="clear"></div>
+            <!-- Navbar -->
+            <div class="navbar navbar-default mega-menu" role="navigation" style="">
+                <div class="container" style="padding: 0">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header home2-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="indexApp.html#/home2">
+                            <img ng-show="!isMobile" id="logo-header" class="logo-pc-size" ng-src="jjc/assets/images/logo2.png" alt="Logo" >
+                            <img ng-show="isMobile" id="logo-header"  class="logo-mobile-size" ng-src="jjc/assets/images/logo2.png" alt="Logo" >
+                        </a>
+
+                        <!--<div ng-if="isMobile" id="searchText" class="input-group" style="margin-top: 8px">
+                            <input id="searchInput" type="text" class="typeahead header-input form-control"  placeholder="{{'header-search-placeholder' | translate}}"  ng-model="mobileKeyword">
+                            <span class="input-group-btn header-btn">
+                                <button class="btn-u" type="button" ng-click="search()">搜索</button>
+                            </span>
+                        </div>-->
+                    </div>
+
+                    <!--当在手机屏幕的时候显示购物车-->
+                    <!--<ul class="list-inline shop-badge badge-lists badge-icons pull-right shoppingcart">-->
+                    <!--<li>-->
+                    <!--<a href="/orderInfo"><i id="cart-iphone" class="fa fa-shopping-cart"></i></a>-->
+                    <!--<span class="badge badge-sea rounded-x" ng-if="allNum>0">{{allNum}}</span>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-responsive-collapse">
+                        <!-- Shopping Cart -->
+                        <ul class="list-inline shop-badge badge-lists badge-icons header2-shop pull-right">
+                            <li>
+                                <a href="indexApp.html#/orderInfo2"><i id="cart" class="fa fa-shopping-cart home2-shopping-cart"></i></a>
+                                <span class="badge badge-sea rounded-x home2-badge-sea" ng-if="allNum>0" ng-bind="allNum"></span>
+                                <ul class="list-unstyled badge-open mCustomScrollbar" ng-show="carts.length > 0" style="height:auto; max-height: 400px">
+                                    <li class="subtotal">
+                                        <div class="overflow-h">
+                                            <span>总计</span>
+                                            <span class="pull-right subtotal-cost" ng-bind="orderdetail.totalAmount"></span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-offset-6 col-xs-6">
+                                                <a href="indexApp.html#/orderInfo2" class="btn-u btn-u-sea-shop btn-block">查看购物车</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li ng-repeat="p in carts track by $index">
+                                        <img ng-show="!p.image" ng-src="jjc/assets/images/prodDefault240.jpg">
+                                        <img ng-show="p.image" src="{{imageService+p.image}}">
+                                        <button type="button" class="close" ng-click="prodRemove(p.id)">×</button>
+                                        <div class="overflow-h">
+                                            <span ng-bind="p.name"></span>
+                                            <small ng-show="isLogin"> <small ng-bind="p.num"></small> x <small ng-bind="p.price"></small></small>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li style="margin-left: 0">
+                                <a href="indexApp.html#/my_collections">
+                                    <span class="header2-favorites">收藏夹</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- End Shopping Cart -->
+
+                        <!-- Nav Menu -->
+                        <ul class="nav navbar-nav navbar-left header2-nav">
+                            <!-- Pages -->
+                            <li class="dropdown">
+                                <a  href="indexApp.html#/home2"  class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+                                    首页
+                                </a>
+                            </li>
+                            <!-- End Pages -->
+
+                            <li class="dropdown" ng-repeat="bc in categories">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" ng-bind="bc.name">
+                                </a>
+                                <ul class="dropdown-menu home2-drop-down-menu change_width" >
+                                    <li ng-repeat="sc in bc.types" class="change_line">
+                                        <a style="cursor: pointer" href="indexApp.html#/product_filter/{{sc.typeId}}/type/1"  ng-bind="sc.name"></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="clear"></div>
+
+                        <!-- End Nav Menu -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Navbar -->
+        </div>
+        <!--=== End Header v5 ===-->
+
+    </div>
+</div>
+

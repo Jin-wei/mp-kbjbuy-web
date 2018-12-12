@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="app_module" ng-controller="headerController">
+<head lang="en">
+    <title><%=ejsData.indexTypeData.title%></title>
+    <meta name="keywords" content="咖布集,kbjbuy.com,咖啡百科"/>
+    <meta name="description" content="咖布集咖啡百科,让你更了解更多的咖啡知识。"/>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" ng-href="{{staticContentURL}}/{{tenant}}/assets/images/favicon.ico"/>
+    <link rel="stylesheet" href="<%= basedir %>/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%= basedir %>/css/iconfont/iconfont.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="<%= basedir %>/css/jjc-style.css"/>
+    <link rel="stylesheet" href="<%= basedir %>/css/common.css">
+    <link rel="stylesheet" href="<%= basedir %>/css/content.css"/>
+    <base href="/">
+</head>
+<body>
+<!--<header-jjc></header-jjc>-->
+<div class="jjc-header">
+    <div class="header-black-width col-xs-12 col-md-12">
+        <div class="header-black">
+            <dd class="col-xs-12 col-sm-6 col-md-6">欢迎来到咖啡业一站式电商服务平台 —— 咖布集 | kbjbuy.com</dd>
+            <dt class="col-xs-12 col-sm-6 col-md-6">
+                <span ng-if="isLogin && !isMobile"><a ng-bind="userName"></a></span>
+                <span ng-if="isLogin && !isMobile"><button ng-click="logOut()" style="background: none;border: none">| &nbsp;&nbsp;&nbsp;退&nbsp;出</button></span>
+                <span>服务热线：0756-6858865</span>
+            </dt>
+        </div>
+    </div>
+    <div class="header-width">
+        <dl class="header-write col-xs-12 col-md-12">
+            <dd class="header-logo col-xs-5 col-sm-3 col-md-3">
+                <a href="/" target="_self">
+                    <img class="img-responsive" src="image/jjc/logo.png">
+                </a>
+            </dd>
+            <dt class="col-xs-7 col-sm-9 col-md-9">
+            <div class="header-qq">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=3420999385&site=qq&menu=yes">
+                    <img class="img-responsive" src="image/jjc/pic1.png"/>
+                </a>
+            </div>
+            <!--购物车-->
+            <div class="header-shop">
+                <ul class="list-inline shop-badge badge-lists badge-icons pull-right">
+                    <li>
+                        <span class="badge badge-sea shop-count" ng-if="allNum>0" ng-bind="allNum"></span>
+                        <a href="indexApp.html#/orderInfo" target="_self">
+                            <img class="header-shop-img" src="image/jjc/jjc-shop.png"/>
+                            <span class="header-shop-span">购物车</span>
+                        </a>
+                        <ul class="list-unstyled badge-open mCustomScrollbar carts-list" ng-show="carts.length > 0">
+                            <li class="subtotal">
+                                <div class="overflow-h">
+                                    <span>总计</span>
+                                    <span class="pull-right subtotal-cost" ng-bind="orderdetail.totalAmount"></span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-offset-6 col-xs-6">
+                                        <a href="indexApp.html#/orderInfo"
+                                           class="btn-u btn-u-sea-shop header-shop-list btn-block">查看购物车</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li  ng-repeat="p in carts track by $index">
+                                <img ng-if="!p.image"
+                                     ng-src="jjc/assets/images/prodDefault240.jpg">
+                                <img ng-if="p.image" ng-src="{{imageService+p.image}}">
+                                <button type="button" class="close" ng-click="prodRemove(p.id)">×</button>
+                                <div class="overflow-h">
+                                    <span ng-bind="p.name"></span>
+                                    <small ng-show="isLogin">
+                                        <small ng-bind="p.num"></small>
+                                        x
+                                        <small ng-bind="p.price"></small>
+                                    </small>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--搜索框-->
+            <div class="header-input-box col-xs-12 col-sm-7 col-md-7">
+                <div class="input-group">
+                    <input class="form-control" id="webProdcutSearch" type="text" autocomplete="off" placeholder="咖啡豆"/>
+                    <div class="input-group-addon search-btn" ng-click="search()">搜索</div>
+                </div>
+            </div>
+            </dt>
+        </dl>
+
+        <div class="jjc-nav col-md-12 col-xs-12">
+            <ul class="jjc-nav-ul">
+                <li>
+                    <a href="/" class="click" target="_self">首 页</a>
+                </li>
+                <li>
+                    <a href="/api/type/5b751a7b0426b45c29f247b6/page/1" target="_self">咖啡百科</a>
+                </li>
+                <li>
+                    <a href="indexApp.html#/cityPartner" target="_self">城市合伙人</a>
+                </li>
+                <li>
+                    <a href="indexApp.html#/supplierRecruitment" target="_self">供应商入驻</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="jjc-home-container">
+
+    <!--banner-->
+    <div class="col-md-12 col-xs-12 content-banner">
+        <div id="carousel-banner" class="carousel" data-ride="carousel">
+            <div class="carousel-inner home2-banner" role="listbox">
+                <div class="item active">
+                    <img src="image/jjc/content-banner1.png">
+                </div>
+            </div>
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-banner" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-banner" data-slide-to="1"></li>
+                <li data-target="#carousel-banner" data-slide-to="2"></li>
+            </ol>
+        </div>
+    </div>
+
+    <!--content-->
+    <div class="jjc-content-width">
+        <div class="col-xs-12 col-md-12 content-list">
+            <ul class="nav nav-tabs" role="tablist">
+                <% for(var i = 0; i < ejsData.secondCategory.length; ++i) {%>
+                <% if (ejsData.secondCategory[i]._id == ejsData.typeId) { %>
+                    <li role="presentation" class="active"><a href="<%= basedir %>/api/type/<%=ejsData.secondCategory[i]._id%>/page/1" target="_self"><%=ejsData.secondCategory[i].name%></a></li>
+                <% } else { %>
+                    <li role="presentation"><a href="<%= basedir %>/api/type/<%=ejsData.secondCategory[i]._id%>/page/1" target="_self"><%=ejsData.secondCategory[i].name%></a></li>
+                <% } %>
+                <% } %>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="tap1">
+                    <ul class="content-ul">
+                        <% for(var i = 0; i < ejsData.contentList.length; ++i) {%>
+                        <li>
+                            <a href="api/contentId/<%=ejsData.contentList[i].short_id%>" target="_self">
+                                <%  if (ejsData.contentList[i].addons.length>0) {%>
+                                    <div class="content-img">
+                                        <img class="image-response" src="<%=ejsData.productApi%>/file/<%=ejsData.contentList[i].addons[0].url%>" alt="">
+                                    </div>
+                                <% } else { %>
+                                    <div class="content-img">
+                                        <img class="img-responsive" src="<%= basedir %>/image/jjc/black-bk.png">
+                                    </div>
+                                 <% } %>
+                                <div class="content-text">
+                                    <div class="col-md-12 no-margin">
+                                        <h3 class="col-md-9 col-xs-12"><%=ejsData.contentList[i].title%></h3>
+                                        <span class="col-md-3 col-xs-12 content-date"><%=ejsData.contentList[i].updated_on%></span>
+                                    </div>
+                                    <p><%=ejsData.contentList[i].abstract%></p>
+                                </div>
+
+                            </a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </div>
+
+
+
+                <div class="pagination pagination-without-border jjc-pagination pull-right m-t-0">
+                    <span class="page-total">共 <%=ejsData.page%> 页</span>
+                    <div class="dropdown dropup">
+                        <button class="btn btn-sm dropdown-toggle pageButton" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <%=ejsData.pageId%> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <% for(var i = 0; i < ejsData.page; ++i) {%>
+                                <li><a href="/api/type/<%=ejsData.typeId%>/page/<%=(i+1)%>" target="_self"><%=(i+1)%></a></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <footer></footer>
+
+    <div ng-show="isMobile" class="col-xs-12" style="position: fixed;bottom: 0px;
+         background:black ;z-index: 999999;height: 70px">
+        <div class="row" style="text-align: center;margin: 0px">
+            <div style="width: 20%;float:left;margin-top: 15px">
+                <a href="indexApp.html#/index-jjc.html" target="_self">
+                    <div class="icon-color iconfont icon-shouye1" style="font-size: 22px"></div>
+                    <div style="font-size: 10px;">
+                        <span>首页</span>
+                    </div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="indexApp.html#/orderInfo" target="_self">
+                    <div class="icon-color iconfont icon-gouwuche" style="font-size: 22px"></div>
+                    <div style="width: 100%;font-size: 10px;margin-top: 2px">
+                        <span>购物车</span>
+                    </div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=3420999385&site=qq&menu=yes" target="_blank">
+                    <div class="icon-color iconfont icon-kefu1" style="font-size: 22px"></div>
+                    <div style="font-size: 10px;"><span>在线客服</span></div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="indexApp.html#/my_prodList" target="_self">
+                    <div class="icon-color iconfont icon-changyong" style="font-size: 22px"></div>
+                    <div style="width: 100%;font-size: 10px;margin-left: 0;margin-top: 2px;">
+                        <span>常用产品</span>
+                    </div>
+                </a>
+            </div>
+            <div style="width: 20%;float:left;margin-top: 15px;">
+                <a href="indexApp.html#/personal_center" target="_self">
+                    <div class="icon-color iconfont icon-wode" style="font-size: 22px"></div>
+                    <div style="font-size: 10px;margin-left: 3px">
+                        <span>我的</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-guide">
+        <div class="guide-wrap">
+            <a href="#" class="kefu" title="找客服"><span>客服</span></a>
+            <a href="#" class="call" title="0756-6858865"><span>电话</span></a>
+            <a href="#" class="wechat" title="咖布集微信公众号"><span>微信</span></a>
+            <a href="javascript:window.scrollTo(0,0)" class="top" title="回顶部"><span>顶部</span></a>
+        </div>
+    </div>
+</div>
+<!--JQuery-->
+<script src="<%= basedir %>/assets/plugins/jquery/jquery.min.js"></script>
+<script src="<%= basedir %>/assets/plugins/jquery/jquery.fly.min.js"></script>
+<script src="<%= basedir %>/assets/plugins/jquery/jquery-migrate.min.js"></script>
+
+<!--Angular-->
+<script src="<%= basedir %>/assets/plugins/angular/angular.min.js"></script>
+<script src="<%= basedir %>/assets/plugins/angular/angular-route.min.js"></script>
+<script src="<%= basedir %>/assets/plugins/angular/angular-cookies.min.js"></script>
+<script src="<%= basedir %>/assets/plugins/angular-translate/angular-translate.min.js"></script>
+<script src="<%= basedir %>/assets/plugins/angular-translate/angular-translate-loader-static-files.min.js"></script>
+
+<!--Bootstrap-->
+<script src="<%= basedir %>/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%= basedir %>/assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+
+<!-- JS Page Level -->
+<script src="<%= basedir %>/assets/js/jquery.qrcode.min.js"></script>
+
+<!--Server-->
+<script src="<%= basedir %>/config/System_Config.js"></script>
+<script src="<%= basedir %>/service/base_service.js"></script>
+<script src="<%= basedir %>/module/app_module.js"></script>
+<script src="<%= basedir %>/service/host_service.js"></script>
+<script src="<%= basedir %>/service/http_service.js"></script>
+<script src="<%= basedir %>/service/directive_service.js"></script>
+<script src="<%= basedir %>/service/lan.js"></script>
+<script src="<%= basedir %>/service/route_service.js"></script>
+<script src="<%= basedir %>/service/sharedData_service.js"></script>
+
+<!--scroll-trigger-->
+<script src="<%= basedir %>/assets/plugins/scroll-trigger/scroll-trigger.min.js"></script>
+
+<!--jq_scroll-->
+<script src="<%= basedir %>/assets/plugins/jq_scroll/jq_scroll.js"></script>
+
+<script src="<%= basedir %>/assets/plugins/typeahead.js/typeahead.bundle.min.js"></script>
+
+<!--Controller-->
+<!-- build:js js/mp-g.jjc.js -->
+<script src="<%= basedir %>/controller/header_controller.js"></script>
+<script src="<%= basedir %>/controller/home2_controller.js"></script>
+<script src="<%= basedir %>/controller/home_jjc_controller.js"></script>
+<!-- endbuild -->
+</body>
+</html>
+
+<script>
+    $('.dropdown-toggle').dropdown()
+</script>

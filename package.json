@@ -1,0 +1,34 @@
+{
+  "name": "jinjiecheng_web",
+  "version": "0.0.1",
+  "dependencies": {
+    "posix-getopt": "1.0.0",
+    "restify": "4.0.3",
+    "mp-common-util": "https://github.com/mpinc/common-util.git#master",
+    "alipay": "https://github.com/mpinc/alipay.git#master",
+    "httpreq": "0.4.22",
+    "log4js": "0.6.32",
+    "request": "2.69.0",
+    "ejs":"^2.6.1",
+    "uuid":"^3.3.2",
+    "seq": "0.3.5",
+    "moment": "^2.21.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-filerev": "^2.1.2",
+    "grunt-usemin": "^2.6.2",
+    "grunt-replace": "*",
+    "grunt-css-url-replace": "*"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "mission public",
+  "license": ""
+}

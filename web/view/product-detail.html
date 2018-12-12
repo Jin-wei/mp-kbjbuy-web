@@ -1,0 +1,314 @@
+<div>
+    <div class="wrapper" scroll-container>
+        <!--=== Shop Product ===-->
+        <div class="shop-product">
+            <!-- Breadcrumbs v5 -->
+            <div class="container">
+                <ul ng-show="!isMobile" class="breadcrumb-v5">
+                    <li><a href="/"><i class="fa fa-home"></i></a></li>
+                    <li><a style="cursor: pointer" href="indexApp.html#/product_filter/{{productData.typeId}}/type/1"  ng-bind="productData.type"></a></li>
+                    <li class="active" ng-bind="productData.productName"></li>
+                </ul>
+                <ul ng-show="isMobile" class="breadcrumb-v5" >
+                    <li style="font-size: 13px"><a href="/"><i class="fa fa-home"></i></a></li>
+                    <li style="font-size: 13px"><a style="cursor: pointer" ng-click="backToType(productData.typeId)" ng-bind="productData.type"></a></li>
+                    <li style="font-size: 13px" class="active" ng-bind="productData.productName"></li>
+                </ul>
+            </div>
+            <!-- End Breadcrumbs v5 -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 detail-slide">
+                        <div class="ms-showcase2-template">
+                            <!-- Master Slider -->
+                            <div class="master-slider" id="masterslider">
+                                <div class="ms-slide" ng-repeat="image in imageArr">
+                                    <img ng-src="{{image.bigImgUrl}}" alt="{{image.description}}">
+                                    <img ng-show="!isMobile"  class="ms-thumb" ng-src="{{image.smallImgUrl}}" alt="{{image.description}}">
+                                </div>
+                            </div>
+                            <!-- End Master Slider -->
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h3 class="margin-bottom-15 " style="text-indent: 20px" ng-bind="productData.productName"></h3>
+                        <!--<p class="margin-bottom-15" ng-bind="productData.description"></p>-->
+                        <!--<ul class="list-inline product-ratings margin-bottom-15">-->
+                            <!--<li><starrating  rating="{{productData.avgRating ? productData.avgRating : 5}}" starspace="3"></starrating></li>-->
+                            <!--<li style="margin-left: 5px">-->
+                                <!--<span><a href="" ng-click="goto('tab-v5')">查看评论 ({{productData.commentCount}}) </a></span>-->
+                            <!--</li>-->
+                        <!--</ul>&lt;!&ndash;/end shop product ratings&ndash;&gt;-->
+                        <div style="width: 100%;height: 100px;background-image: url(jjc/assets/images/detail-bg.png);text-indent: 20px;padding-top: 20px" ng-show="isLogin">
+                            <p style="font-size: 16px;color: #bbbbbb">抢购价</p>
+                            <p class="red-price" style="font-size: 34px;line-height: 34px"><span class="red-price" style="font-size: 18px">¥ </span> {{productData.price}}</p>
+                        </div>
+                        <!--<ul class="list-inline shop-product-prices margin-bottom-30">-->
+                            <!--<li class="shop-red">￥ <span ng-bind="productData.price"></span></li>-->
+                        <!--</ul>-->
+
+
+                        <div class="row" style="margin-top: 10px;padding-left: 35px">
+                            <div class="col-md-2 col-xs-2 no-padding">
+                                <p class="detail-count">数量</p>
+                            </div>
+                            <div class="col-md-5 collection-padding">
+                                <button type='button' class="quantity-btn" ng-click="increaseClick()" value='-'>-</button>
+                                <input type='text' class="quantity-fd"  id='qty' ng-init="productQuantity=1" ng-model="productQuantity" onkeyup="this.value=this.value.replace(/\D/g,'')"/>
+                                <button type='button' class="quantity-btn"  ng-click="plusClick()" value='+'>+</button>
+                            </div>
+                            <div class="col-md-5 pull-right">
+                                <button  type="button" id="add-cart-btn" class="add-btn bgcolor-change" ng-click="addShoppingCartClick(productData,productData.num)">加入购物车</button>
+                            </div>
+                        </div><!--/end product quantity-->
+                        <div class="row detail-collection" style="padding-left: 40px">
+                            <div class="col-md-6 col-xs-6 no-padding">
+                                <p class="description-species category-p"><strong>种类:</strong><a href="" ng-bind="productData.type"></a></p>
+                            </div>
+                            <div class="col-md-6 col-md-6 no-padding pull-right">
+                                <ul class="list-inline add-to-wishlist">
+                                    <li class="wishlist-in">
+                                        <a style="cursor:pointer" ng-show="ifHasInFavorite(productData.prodId) == false" ng-click="addCollectionClick(productData)">
+                                            <!--<img ng-src="jjc/assets/images/encollection.png">-->
+                                            <i class="iconfont icon-xinkong"></i>
+                                            收藏</a>
+                                        <a style="cursor:pointer" ng-show="ifHasInFavorite(productData.prodId) == true" ng-click="deleteCollectionClick(productData)">
+                                            <i class="iconfont icon-xin" ></i>
+                                            <!--<img ng-src="jjc/assets/images/collectioned.png">-->
+                                            收藏</a>
+                                    </li>
+                                    <li>
+                                        <mp-we-chat-share class="fa fa-weixin weixin-color"></mp-we-chat-share>
+                                    </li>
+                                    <!--<li class="compare-in">-->
+                                    <!--<i class="fa fa-exchange"></i>-->
+                                    <!--<a href="">加入比较</a>-->
+                                    <!--</li>-->
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="padding: 5px 0 0 20px;">
+                            <span class="bodercolor-change color-change label-span" ng-repeat="label in productData.label" ng-click="toSearch(label.label_name)">{{label.label_name}}</span>
+                        </div>
+                        <hr class="detail-line"/>
+                        <div >
+                            <div class="row">
+                                <div class="col-xs-3 col-md-2 align-right no-padding">
+                                    <p class="description-p">服务：</p>
+                                </div>
+                                <div class="col-xs-9  no-padding">
+                                    <p class="description-p">由全国各地咖布集发货，并提供对应服务；</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3 col-md-2 align-right no-padding">
+                                    <p class="description-p">支持：</p>
+                                </div>
+                                <div class="col-xs-9  no-padding">
+                                    <p class="description-p">全场满38元免运费；商家客户可货到付款</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3 col-md-2 align-right no-padding">
+                                    <p class="description-p">温馨提示：</p>
+                                </div>
+                                <div class="col-xs-9  no-padding">
+                                    <p class="description-p">在线支付订单需在24小时内支付，否则订单将被取消</p>
+                                </div>
+                            </div>
+                            <!--<p class="description-p">服务：由全国各地咖布集发货，并提供对应服务；</p>
+                            <p class="description-p">支持：全场满38元免运费；商家客户可货到付款</p>
+                            <p class="description-p">温馨提示：在线支付订单需在24小时内支付，否<span class="information-span-padding">则订单将被取消</span></p>-->
+                        </div>
+                    </div>
+                </div><!--/end row-->
+            </div>
+        </div>
+        <!--=== End Shop Product ===-->
+
+        <!--=== Content Medium ===-->
+        <div class="container detail-content-md" id="tab-v5">
+            <div class="tab-v5">
+                <ul class="nav nav-tabs">
+                    <li ng-class="{active: activeTab == 1}"><a href="javascript:;" ng-click="descriptionClick(1)" >图片</a></li>
+                    <li ng-class="{active: activeTab == 4}" ng-show="productData.description.length>0"><a href="javascript:;" ng-click="descriptionClick(4)" >描述</a></li>
+                    <li ng-class="{active: activeTab == 3}"><a href="javascript:;" ng-click="descriptionClick(3)" >产品规格</a></li>
+                    <!--<li ng-class="{active: activeTab == 2}"><a href="javascript:;" ng-click="descriptionClick(2)" >评论 (<span ng-bind="productData.commentCount"></span>)</a></li>-->
+                </ul>
+
+                <div class="tab-content tab-bordered">
+                    <!-- Description -->
+                    <div class="tab-panel" ng-show="activeTab == 4" id="description">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <p ng-bind="productData.description"></p><br>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Description -->
+                    <div class="tab-panel" ng-show="activeTab == 3">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>商品名称 : <span ng-bind="productData.productName"></span></p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>商品/编号 : <span ng-bind="productData.prodCode"></span></p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>单位 : <span ng-bind="productData.unitOfMeasure"></span></p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>商品分类 : <span ng-bind="productData.type"></span></p>
+                            </div>
+                            <div class="col-md-4">
+                                <p ng-show="productData.note != null && productData.note.length > 0">备注 : <span ng-bind="productData.note"></span></p>
+                                <p ng-show="productData.note == null || productData.note.length == 0">备注 : 暂无备注</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>规格 : <span ng-bind="productData.measurement"></span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews -->
+                    <div class="tab-panel" ng-show="activeTab == 2">
+                        <div class="product-comment margin-bottom-40">
+                            <div class="product-comment-in" ng-repeat="p in nowReviews">
+                                <img class="product-comment-img rounded-x" src="../Shop-UI/assets/img/team/01.jpg" alt="">
+                                <div class="product-comment-dtl">
+                                    <h4>{{p.user_name}} <small>{{p.createTime}}</small></h4>
+                                    <p ng-bind="p.comment"></p>
+                                    <ul class="list-inline product-ratings">
+                                        <li class="pull-right">
+                                            <starrating  rating="{{p.rating}}" starspace="3"></starrating>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-white" id="preBtn" ng-click="previousPageClick()" disabled><span style="color: #2aabd2">上一页</span></button>
+                                <button type="button" class="btn btn-white" id="nextBtn" ng-click="nextPageClick()" ><span style="color: #2aabd2">下一页</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Reviews -->
+                </div>
+            </div>
+            <div class="product-detail-padding">
+                <img class="full-width img-responsive" ng-repeat="image in descriptionImage" ng-src="{{image.url}}" alt="{{image.description}}">
+            </div>
+        </div><!--/end container-->
+        <!--=== End Content Medium ===-->
+
+        <!--=== Illustration v2 ===-->
+        <div class="container">
+            <div class="heading heading-v1 margin-bottom-20">
+                <h2 class="detail-h2">猜你喜欢</h2>
+                <!--<p>{{productData.description}}</p>-->
+            </div>
+            <div class="illustration-v2">
+                <div class="customNavigation margin-bottom-25">
+                    <a class="owl-btn prev rounded-x"><i class="fa fa-angle-left"></i></a>
+                    <a class="owl-btn next rounded-x"><i class="fa fa-angle-right"></i></a>
+                </div>
+                <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: false, rewindNav : false, items:5}">
+                    <div  owl-carousel-item="" ng-repeat="p in relevantProduct" class="illustration-v2 margin-bottom-60 margin-left-10">
+                        <div class="like-box-shadow">
+                            <a href="indexApp.html#/product/{{p.prodId}}/bizId/0" ng-if="!p.imgUrl"><img class="full-width img-responsive" ng-src="jjc/assets/images/prodDefault240.jpg" alt=""></a>
+                            <a href="indexApp.html#/product/{{p.prodId}}/bizId/0" ng-if="p.imgUrl"><img class="full-width img-responsive" ng-src="{{MimageService+p.imgUrl}}" alt=""></a>
+                        </div>
+                        <div class="product-description product-description-brd margin-bottom-30">
+                            <div class="overflow-h margin-bottom-5">
+                                <div style="float: left" ng-show="isLogin">
+                                    <span class="title-price">￥</span>
+                                    <span class="red-price" ng-bind="p.price"></span>
+                                </div>
+                                <div style="float: right">
+                                    <p style="font-size: 14px;color: rgb(182,182,182)" ng-bind="p.type"></p>
+                                </div>
+                                <p style="width: 100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;word-break:keep-all;font-size: 14px" ng-bind="p.productName"></p>
+                                <div class="clear"></div>
+                            </div>
+                            <div>
+                                <a style="cursor:pointer" ng-show="ifHasInFavorite(p.prodId) == false" ng-click="addCollectionClick(p)"><i class="icon-color iconfont icon-xinkong"></i>收藏</a>
+                                <a style="cursor:pointer" ng-show="ifHasInFavorite(p.prodId) == true" ng-click="deleteCollectionClick(p)"><i class="icon-color iconfont icon-xinkong"></i>收藏</a>
+                                <button class="bgcolor-change" type="button" id="{{'add-cart-btn'+$index}}" class="btn-u btn-u-sea-shop"
+                                        ng-click="addShoppingCartTodyClick(p,1,$index)"style="font-size: 13px;float: right;height: 30px;width: 85px;
+                                background-color: #8a6d4d;color: white;border: none;margin-top: -10px">加入购物车</button>
+                            </div>
+                        </div>
+                    </div>
+                </data-owl-carousel>
+            </div>
+            <!--=== Product Service ===-->
+            <div ng-show="!isMobile" class="row margin-bottom-60 detail-service">
+                <div class="col-md-4 product-service md-margin-bottom-30">
+                    <div class="product-service-heading">
+                        <i class="fa fa-truck"></i>
+                    </div>
+                    <div class="product-service-in">
+                        <h3>免费送货</h3>
+                        <p>货在途中,安全放心</p>
+                        <a href="#">+了解更多</a>
+                    </div>
+                </div>
+                <div class="col-md-4 product-service md-margin-bottom-30">
+                    <div class="product-service-heading">
+                        <i class="icon-earphones-alt"></i>
+                    </div>
+                    <div class="product-service-in">
+                        <h3>客户服务</h3>
+                        <p>24小时在线客服,解决您的疑难问题</p>
+                        <a href="#">+了解更多</a>
+                    </div>
+                </div>
+                <div class="col-md-4 product-service">
+                    <div class="product-service-heading">
+                        <i class="icon-refresh"></i>
+                    </div>
+                    <div class="product-service-in">
+                        <h3>售后无忧</h3>
+                        <p>同城售后及时解决售后困扰</p>
+                        <a href="#">+了解更多</a>
+                    </div>
+                </div>
+                <div>
+                   <!-- <img src="">-->
+                </div>
+            </div><!--/end row-->
+            <!--=== End Product Service ===-->
+
+
+
+            <!--<div class="illustration-v2 margin-bottom-60">-->
+                <!--<div class="customNavigation margin-bottom-25">-->
+                    <!--<a class="owl-btn prev rounded-x"><i class="fa fa-angle-left"></i></a>-->
+                    <!--<a class="owl-btn next rounded-x"><i class="fa fa-angle-right"></i></a>-->
+                <!--</div>-->
+
+                <!--<ul class="list-inline owl-slider-v4">-->
+                    <!--<li class="item"  ng-repeat="p in relevantProduct">-->
+                        <!--<a href="#"><img class="img-responsive" src="../Shop-UI/assets/img/thumb/07.jpg" alt=""></a>-->
+                        <!--<div class="product-description-v2">-->
+                            <!--<div class="margin-bottom-5">-->
+                                <!--<h4 class="title-price"><a href="#">{{p.productName}}</a></h4>-->
+                                <!--<span class="title-price">￥{{p.price}}</span>-->
+                            <!--</div>-->
+                            <!--<ul class="list-inline product-ratings">-->
+                                <!--<li><i class="rating-selected fa fa-star"></i></li>-->
+                                <!--<li><i class="rating-selected fa fa-star"></i></li>-->
+                                <!--<li><i class="rating-selected fa fa-star"></i></li>-->
+                                <!--<li><i class="rating fa fa-star"></i></li>-->
+                                <!--<li><i class="rating fa fa-star"></i></li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        </div>
+        <!--=== End Illustration v2 ===-->
+    </div>
+</div>
+

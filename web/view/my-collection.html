@@ -1,0 +1,44 @@
+
+<!--=== Content Part ===-->
+<div class="container">
+    <div style="margin-top: 40px">
+        <div class="illustration-v2">
+            <div class="col-md-3" style="float: left" ng-repeat="p in products">
+                <div class="product-img product-img-brd">
+                    <a ng-click="gotoDetail(p.prodId,p.bizId)">
+                        <img ng-if="p.imgUrl" class="full-width img-responsive" ng-src="{{imageService+p.imgUrl}}" alt="">
+                        <img ng-if="!p.imgUrl" class="full-width img-responsive" ng-src="jjc/assets/images/prodDefault240.jpg" alt="">
+                    </a>
+                    <a class="product-review" ng-click="gotoDetail(p.prodId,p.bizId)">快速查看</a>
+                    <!--<a class="add-to-cart" id="{{'add-cart-btn'+$index}}" href="javascript:void(0);" ng-click="addShoppingCartClick(p,1,$index,'栅格')"><i class="fa fa-shopping-cart"></i>加入购物车</a>-->
+                    <div ng-show="p.isNew" class="shop-rgba-dark-green rgba-banner">新品</div>
+                </div>
+                <button ng-click="deleteClick(p.prodId)" style="position:absolute; top:0; right:15px; z-index:99;background-color:rgba(0,0,0,0.5);border: none;color: white">删除</button>
+                <div class="product-description product-description-brd margin-bottom-30">
+                    <div class="overflow-h margin-bottom-5">
+                        <div>
+                            <span class="title-price">￥</span><span class="title-price" ng-bind="p.price"></span>
+                            <!--<span class="title-price line-through">{{p.price}}</span>-->
+                        </div>
+                        <div>
+                            <h5 style="font-size: 15px;color: #687074;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;word-break:keep-all"><a ng-click="gotoDetail(p.prodId,p.bizId)" ng-bind="p.productName"></a></h5>
+                            <span class="gender text-uppercase" ng-show="p.type != null" ng-bind="p.type"></span>
+                            <span class="gender text-uppercase" ng-show="p.type == null">暂无录入</span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="list-inline product-ratings" style="float: left;">
+                            <li >
+                                <starrating rating="{{p.avgRating ? p.avgRating : 5}}" starspace="3"></starrating>
+                            </li>
+                        </ul>
+                        <button class="bgcolor-change" id="{{'add-cart-btn'+$index}}" ng-click="addShoppingCartClick(p,1,$index,'栅格')" style="float: right;height: 30px;width: 100px;color: white;border: none;margin-top: -10px">加入购物车</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/end row-->
+</div><!--/end container-->
+<!--=== End Content Part ===-->

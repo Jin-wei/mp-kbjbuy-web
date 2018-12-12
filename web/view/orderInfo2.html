@@ -1,0 +1,147 @@
+
+<div>
+    <div class="wrapper">
+        <!--=== Breadcrumbs v4 ===-->
+        <div ng-show="!isMobile" class="breadcrumbs-v4 oderInfo2_banner">
+            <div class="container">
+                <span class="page-name">结账</span>
+                <h2 style="color: white">购物车</h2>
+                <ul class="breadcrumb-v4-in">
+                    <li><a href="/">首页</a></li>
+                    <li class="active">购物车</li>
+                </ul>
+            </div><!--/end container-->
+        </div>
+        <div ng-show="isMobile" class="breadcrumbs-v4" style="padding: 0px;height: 50px;line-height: 50px;text-align: left;">
+            <div class="" style="margin-left: 10px">
+                <ul class="breadcrumb-v4-in" style="padding: 0px;margin: 0">
+                    <li ><a href="/" style="color: white;!important;">首页</a></li>
+                    <li ><span style="color: white">购物车</span></li>
+                    <li ><span style="color: white">{{stepDescription}}</span></li>
+                </ul>
+            </div><!--/end container-->
+        </div>
+        <!--=== End Breadcrumbs v4 ===-->
+        <div class="container">
+            <div class="col-md-12 col-xs-12 order-item">
+                <span>订单号：{{ncaOrderInfo.orderId}}</span>
+            </div>
+        </div>
+
+        <!--=== Content Medium Part ===-->
+        <div ng-show="haveProduct == 1" class="content-md margin-bottom-30 orderInfo2-md {{isMobile ? 'padding-top-5':''}}">
+            <div class="container">
+
+                <form class="shopping-cart">
+                    <div>
+                        <section>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <td></td>
+                                        <th>产品</th>
+                                        <th>价格</th>
+                                        <th>数量</th>
+                                        <th>总计</th>
+                                        <th>空间</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr ng-repeat="p in carts" id="shopList{{p.productCode}}">
+                                        <td>
+                                            <input name="checkboxId" type="checkbox" value="{{p}}" ng-click="selectClick(p)" ng-checked="validateCheck(p)">
+                                        </td>
+                                        <td class="product-in-table">
+                                            <img ng-show="!p.image" ng-src="jjc/assets/images/prodDefault240.jpg">
+                                            <img ng-show="p.image" src="{{imageService+p.image}}">
+                                            <div class="product-it-in">
+                                                <h3 ng-bind="p.name"></h3>
+                                            </div>
+                                        </td>
+                                        <td style="text-align: left">
+                                            <span ng-bind="p.price"></span>
+                                            <!--<span>￥ {{p.specialPrice != -1 && p.specialPrice != null?p.specialPrice:p.price}}</span>-->
+                                            <!--<s class="shop-red" style="margin-left: 20px" ng-show="p.specialPrice != -1 && p.specialPrice != null">￥{{p.price}}</s>-->
+                                        </td>
+                                        <td>
+                                            <button type='button' class="quantity-button" ng-click="increaseClick(p)" value='-'>-</button>
+                                            <input type='text' class="quantity-field" ng-model="p.num" ng-change="changeNum(p)" ng-blur="inputBlur(p)" onkeyup="this.value=this.value.replace(/\D/g,'')"/>
+                                            <button type='button' class="quantity-button" ng-click="plusClick(p)" value='+'>+</button>
+                                        </td>
+                                        <td class="shop-red">
+                                            <div ng-show="p.specialPrice != -1 && p.specialPrice != null" ng-bind="p.specialPrice*p.num"></div>
+                                            <div ng-show="p.specialPrice == -1 || p.specialPrice == null" ng-bind="p.num * p.price"></div>
+                                            <!--{{p.specialPrice != -1 && p.specialPrice != null ? p.specialPrice*p.num:p.num * p.price}}-->
+                                        </td>
+                                        <td>
+                                            <select class="romeSelect" name="romeSelect">
+                                                <option value=""></option>
+                                                <option value="{{room.room_id}}" ng-repeat="room in roomsInfo">{{room.room_name}}</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button type="button" ng-click="deleteItem(p)" class="close"><span>&times;</span><span class="sr-only">Close</span></button>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                                <textarea ng-model="note" class="form-control" style="height: 80px;border: 1px solid #eee" placeholder="请输入特殊要求"></textarea>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="coupon-code">
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-9">
+                                <ul class="list-inline total-result">
+                                    <li class="total-price">
+                                        <h4>总计:</h4>
+                                        <div class="total-result-in">
+                                            <span>￥ <span ng-bind="total"></span></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12" ng-show="total>0">
+                        <div style="float: right;color: white">
+                            <button type="submit" class="step-btn bgcolor-change" ng-click="createOrder()" style="height: 35px;width: 120px;border: none">确  认</button>
+                        </div>
+                    </div>
+                </form>
+            </div><!--/end container-->
+        </div>
+        <div ng-show="haveProduct == 0" style="width: 100%;height: 300px">
+            <p style="margin:0 auto;margin-top:100px;width:370px;font-size: 20px">购物车空空的哦~，去看看心仪的商品吧~</p>
+            <button style="margin:0 auto;width:100px;height:40px;margin-top:20px;display:block;font-size: 18px;" ng-click="goShopping()">去购物</button>
+        </div>
+        <!--=== End Content Medium Part ===-->
+    </div><!--/wrapper-->
+
+
+    <!--modal-->
+    <div class="modal fade" id="sure-dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">商品确认</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger m-b-0">
+                        <h4><i class="fa fa-info-circle"></i>您确认要添加此商品吗?</h4>
+                       <!-- <p>确定后,用户将作为系统用户,可以正常登录并使用系统.</p>-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-white" data-dismiss="modal">取消</button>
+                    <button class="btn btn-sm btn-success bgcolor-change" ng-click="onSure()" style="border: none">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

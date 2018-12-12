@@ -1,0 +1,35 @@
+.top-right-btn {
+    margin-bottom: 10px;
+}
+.screening-div{
+    font-size: 16px;
+    color: #687074 ;
+    margin-top: 20px;
+}
+.label-uncheck-span{
+    display: inline-block;
+    margin-right: 10px;
+    padding: 3px 7px;
+    border: 1px solid #9c8061;
+    border-radius: 5px;
+    color: #9c8061 ;
+    cursor: pointer;
+}
+.label-check-span{
+    color: #ffffff;
+    display: inline-block;
+    margin-right: 10px;
+    padding: 3px 7px;
+    border-radius: 5px;
+}
+.screening-btn{
+    width: 63px!important;
+    cursor: pointer
+}
+.screening-btn span{
+    font-size: 15px;
+}
+.screening-label{
+    display: inline-block;
+    margin-right: 10px;
+}

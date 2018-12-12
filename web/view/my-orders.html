@@ -1,0 +1,107 @@
+
+<div>
+    <div class="wrapper">
+        <!--=== Content Medium Part ===-->
+        <div class="content-md margin-bottom-30" style="padding-top: 15px">
+            <div class="container">
+                <ul class="nav nav-tabs" id="myTabs" >
+                    <li role="presentation" class="{{$index == 0?'active':''}}" ng-repeat="status in statusArr"><a style="padding:10px 10px;" href="" ng-click="statusClick($index)" ng-bind="status"></a></li>
+                </ul>
+                <div>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default" ng-repeat="order in orders">
+                            <div class="panel-heading" ng-click="orderDetailClick(order.orderId)" data-toggle="collapse" data-parent="#accordion" data-target="#{{'collapse' + $index}}">
+                                <div style="height: 35px;line-height: 35px;">
+                                    <span  style="color: rgb(155,155,155);" ng-bind="order.createdOn"></span>
+                                    <span  style="margin-left: 30px;color: rgb(155,155,155);">订单号:</span> &nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="order.orderId"></span>
+                                    <a class="spread-a" href="javascript:;" data-toggle="collapse" data-parent="#accordion" data-target="#{{'collapse' + $index}}" style="float: right;margin-right: 20px;" ng-click="orderDetailClick(order.orderId)">订单详情</a>
+                                </div>
+                            </div>
+                            <div id="{{'collapse' + $index}}" class="{{'panel-collapse ' + ($index == 0?'collapse in':'collapse')}}" style="overflow-x: auto;">
+                                <div class="panel-body">
+                                    <table class="table table-bordered" style="white-space:nowrap">
+                                        <tr ng-repeat="orderItem in orderItems">
+                                            <td style="padding-right: 20px; padding-top: 10px">
+                                                <div style="width: 330px">
+                                                    <a href="{{'indexApp.html#/product/'+orderItem.productId +'/bizId/0'}}">
+                                                        <img class="img-responsive" style="width: 40px;height: 40px;float: left;margin-top: 5px" src="{{orderItem.imgUrl}}" alt="">
+                                                    </a>
+                                                    <div class="title_overflow2" style="margin-left: 20px;float: left;width: 130px">
+                                                        <a href="{{'indexApp.html#/product/'+orderItem.productId+'/bizId/0'}}"><h5 align="left" style="line-height: 40px;" ng-bind="orderItem.productName"></h5></a>
+                                                    </div>
+                                                    <div style="float: left;margin-left: 20px;width: 40px">
+                                                        <h5 style="line-height: 40px;float: left;">x</h5>
+                                                        <h5 style="line-height: 40px;float: left" ng-bind="orderItem.quantity"></h5>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                    <div style="float: right;width: 40px">
+                                                        <h5 style="line-height: 40px;float: left" ng-show="orderItem.status == 'received'">(已收货)</h5>
+                                                        <h5 style="line-height: 40px;float: left" ng-show="orderItem.status != 'received'">(未收货)</h5>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                                <div style="clear: both"></div>
+                                            </td>
+                                            <td align="center" ng-if="$index == 0" rowspan="{{orderItems.length}}" style="text-align:center;padding-top: 10px">
+                                                <div style="width:150px; word-wrap:break-word; word-break:normal;">
+                                                    <!--<p class="shop-red" ng-show="order.status == 'pending'">未付款</p>-->
+                                                    <!--<p class="shop-red" ng-show="order.status == 'payed'">已付款</p>-->
+                                                    <!--<p class="shop-red" ng-show="order.status == 'completed'">订单已完成</p>-->
+                                                    <!--<p class="shop-red" ng-show="order.status == 'canceled'">订单已取消</p>-->
+                                                    <!--<p class="shop-red" ng-show="order.status == 'confirmed'">货到付款</p>-->
+                                                    <p style="width:70px; word-wrap:break-word; white-space:normal;float: left;text-align: right" ng-bind="order.state"></p>
+                                                    <p style="width:70px; word-wrap:break-word; white-space:normal;float: left;text-align: left;text-indent: 10px" ng-bind="order.city"></p>
+                                                    <div class="clear"></div>
+                                                    <p style="width:150px; word-wrap:break-word; white-space:normal;" ng-bind="order.address"></p>
+                                                </div>
+                                            </td>
+                                            <td ng-if="$index == 0" rowspan="{{orderItems.length}}" style="text-align:center;padding-top:10px;">
+                                                <div style="width: 150px;text-align: center">
+                                                    <span style="color: #8e8e8e">总额:￥ </span>
+                                                    <span style="color: #8e8e8e"ng-bind="order.orderAmount"></span>
+                                                </div>
+                                            </td>
+                                            <td  ng-if="$index == 0" rowspan="{{orderItems.length}}" style="text-align:center;padding-top: 10px"><p style="width:150px" ng-bind="order.name"></p></td>
+                                            <td  ng-if="$index == 0" rowspan="{{orderItems.length}}" style="text-align:center;padding-top: 10px;">
+                                                <div style="width: 200px;">
+                                                    <div ng-show="order.status == 'pending'">
+                                                        <input type="button" class="color-change bodercolor-change" style="border: solid 1px;background: none;font-size: 12px;width: 120px;height: 22px;float: left;margin-left: 50px" ng-click="payClick(order.orderId)" value="立即支付">
+                                                        <input type="button" class="color-change bodercolor-change" style="border: solid 1px;background: none;font-size: 12px;width: 120px;height: 22px;float: left;margin-left: 50px;margin-top: 10px" ng-click="cancleClick(order.orderId)" value="取消订单">
+                                                    </div>
+                                                    <div ng-show="order.status == 'payed' || order.status == 'confirmed'">
+                                                        <input type="button" class="color-change bodercolor-change" style="border: solid 1px;background: none;font-size: 12px;width: 120px;height: 22px;float: left;margin-left: 50px" ng-click="confirmReceiptClick(order.orderId)" value="确认收货"><br/>
+                                                        <input type="button" class="color-change bodercolor-change" style="border: solid 1px;background: none;font-size: 12px;width: 120px;height: 22px;float: left;margin-left: 50px;margin-top: 10px" ng-click="cancleClick(order.orderId)" value="取消订单">
+                                                    </div>
+                                                    <div ng-show="order.status == 'completed'">
+                                                        <input type="button" class="color-change bodercolor-change" style="border: solid 1px;background: none;font-size: 12px;width: 120px;height: 22px;float: left;
+                                                        margin-left: 50px;margin-top: 10px" ng-click="commentClick(order.orderId)" value="评论"><br/>
+                                                        <input type="button" class="color-change bodercolor-change" style="border: solid 1px;background: none;font-size: 12px;width: 120px;height: 22px;float: left;
+                                                        margin-left: 50px;margin-top: 10px" value="再次购买" ng-click="reOrderClick(orderItems)">
+                                                    </div>
+                                                    <div ng-show="order.status == 'canceled'">
+                                                        <!--<input type="button" style="border: solid 1px rgb(94,168,49);background: none;color:rgb(94,168,49);font-size: 12px;width: 100px;" ng-click="confirmReceiptClick(order.orderId)" value="确认收货"><br/>-->
+                                                        <!--<a style="" ng-click="cancleOrderClick(order.orderId)">取消订单</a><br/>-->
+                                                        <!--<a href="/comment?orderId={{order.orderId}}" style="display: block;padding: 0;">评论</a>-->
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr ng-show="order.note != null && order.note.length > 0">
+                                            <td colspan="5">
+                                                <p style="margin-top: 10px;margin-bottom: 10px">备注：{{order.note}}</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-white" id="preBtn" ng-click="previousPageClick()" disabled><span style="color: #2aabd2">上一页</span></button>
+                        <button type="button" class="btn btn-white" id="nextBtn" ng-click="nextPageClick()" ><span style="color: #2aabd2">下一页</span></button>
+                    </div>
+                </div>
+            </div><!--/end container-->
+        </div>
+    </div><!--/wrapper-->
+</div>

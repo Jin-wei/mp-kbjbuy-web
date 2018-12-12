@@ -1,0 +1,26 @@
+{
+    "name": "乐宜嘉",
+    "html-title":"乐宜嘉采购中心",
+    "html-description":"一体化美学设计,全过程家装服务",
+    "customer exists for another user": "已经是其他经销商的用户",
+    "User exists already.": "用户已存在",
+
+    "header-left-title":"乐宜嘉，90天拎包入住梦想家",
+    "header-right-service":"服务热线：400-700-6333",
+    "header-search-placeholder":"请输入商品名称",
+    "footer-copyright":"Copyright ©2018 乐宜嘉家居集团有限公司  粤ICP备17098231号",
+    "QQ":"3415603245",
+    "phone":"400-700-6333",
+    "wei-bo":"乐宜嘉美学整装",
+    "erWeiMaText":"微信二维码",
+    "registrationCompany":"乐宜嘉家居集团有限公司",
+
+    "homeLink":"home2",
+    "header":"header2",
+    "orderInfoLink":"orderInfo2",
+    "isLogin":"true",
+    "productDetailService":"false",
+    "productDetailFooter":"false",
+    "productFilterLogin":"true",
+    "productDetailLogin":"true"
+}

@@ -1,0 +1,289 @@
+
+<div>
+    <div class="wrapper orderinfo-margin">
+        <!--=== Breadcrumbs v4 ===-->
+        <div ng-show="!isMobile" class="breadcrumbs-v4">
+            <div class="container">
+                <span class="page-name">结账</span>
+                <h2 style="color: white">购物车</h2>
+                <ul class="breadcrumb-v4-in">
+                    <li><a href="/">首页</a></li>
+                    <li class="active">购物车</li>
+                </ul>
+            </div><!--/end container-->
+        </div>
+        <div ng-show="isMobile" class="breadcrumbs-v4" style="padding: 0px;height: 50px;line-height: 50px;text-align: left;">
+            <div class="" style="margin-left: 10px">
+                <ul class="breadcrumb-v4-in" style="padding: 0px;margin: 0">
+                    <li ><a href="/" style="color: white;!important;">首页</a></li>
+                    <li ><span style="color: white">购物车</span></li>
+                    <li ><span style="color: white">{{stepDescription}}</span></li>
+                </ul>
+            </div><!--/end container-->
+        </div>
+        <!--=== End Breadcrumbs v4 ===-->
+
+        <!--=== Content Medium Part ===-->
+        <div ng-show="haveProduct == 1" class="content-md margin-bottom-30 {{isMobile ? 'padding-top-5':''}}">
+            <div class="container">
+
+                <form class="shopping-cart">
+                    <div class="row" ng-show="!isMobile">
+
+                        <div class="col-sm-4" >
+                            <div class="overflow-h" ng-class="step == 1 ? 'order-info-active':'order-info-block'"  style=" padding-left: 10px">
+                                <h2 style="color: {{(step == 1) ? 'white' : 'black'}};">购物车</h2>
+                                <p style="color: {{(step == 1) ? 'white' : 'black'}};">检验 & 编辑你的产品</p>
+                                <i class="rounded-x fa fa-check" style="color: {{(step == 1) ? 'white' : 'black'}};"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" >
+                            <div class="overflow-h" ng-class="step == 2 ? 'order-info-active':'order-info-block'" style="padding-left: 10px">
+                                <h2 style="color: {{(step == 2) ? 'white' : 'black'}};">账单详情</h2>
+                                <p style="color: {{(step == 2) ? 'white' : 'black'}};">航运和地址</p>
+                                <i class="rounded-x fa fa-home" style="color: {{(step == 2) ? 'white' : 'black'}};"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" >
+                            <div class="overflow-h" ng-class="step == 3 ? 'order-info-active':'order-info-block'" style="padding-left: 10px">
+                                <h2 style="color: {{(step == 3) ? 'white' : 'black'}};">支付</h2>
+                                <p style="color: {{(step == 3) ? 'white' : 'black'}};">请选择支付方式</p>
+                                <i class="rounded-x fa fa-credit-card" style="color: {{(step == 3) ? 'white' : 'black'}};"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="step == 1">
+                        <section>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <td></td>
+                                        <th>产品</th>
+                                        <th>价格</th>
+                                        <th>数量</th>
+                                        <th>总计</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr ng-repeat="p in carts">
+                                        <td>
+                                            <input name="checkboxId" type="checkbox" value="{{p}}" ng-click="selectClick(p)" ng-checked="validateCheck(p)">
+                                        </td>
+                                        <td class="product-in-table">
+                                            <img ng-show="!p.image" ng-src="jjc/assets/images/prodDefault240.jpg">
+                                            <img ng-show="p.image" ng-src="{{imageService+p.image}}">
+                                            <div class="product-it-in">
+                                                <h3 ng-bind="p.name"></h3>
+                                            </div>
+                                        </td>
+                                        <td style="text-align: left">
+                                            <span ng-bind="p.price"></span>
+                                            <!--<span>￥ {{p.specialPrice != -1 && p.specialPrice != null?p.specialPrice:p.price}}</span>-->
+                                            <!--<s class="shop-red" style="margin-left: 20px" ng-show="p.specialPrice != -1 && p.specialPrice != null">￥{{p.price}}</s>-->
+                                        </td>
+                                        <td>
+                                            <button type='button' class="quantity-button" ng-click="increaseClick(p)" value='-'>-</button>
+                                            <input type='text' class="quantity-field" ng-model="p.num" ng-change="changeNum(p)" ng-blur="inputBlur(p)" onkeyup="this.value=this.value.replace(/\D/g,'')"/>
+                                            <button type='button' class="quantity-button" ng-click="plusClick(p)" value='+'>+</button>
+                                        </td>
+                                        <td class="shop-red">
+                                            <div ng-show="p.specialPrice != -1 && p.specialPrice != null" ng-bind="p.specialPrice*p.num"></div>
+                                            <div ng-show="p.specialPrice == -1 || p.specialPrice == null" ng-bind="p.num * p.price"></div>
+                                            <!--{{p.specialPrice != -1 && p.specialPrice != null ? p.specialPrice*p.num:p.num * p.price}}-->
+                                        </td>
+                                        <td>
+                                            <button type="button" ng-click="deleteItem(p)" class="close"><span>&times;</span><span class="sr-only">Close</span></button>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                                <textarea ng-model="note" class="form-control" style="height: 80px;border: 1px solid #eee" placeholder="请输入特殊要求"></textarea>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div ng-show="step == 2" style="margin-top: 30px">
+
+                        <section class="billing-info">
+                            <div class="row">
+                                <div ng-repeat="a in addressArr" class="col-sm-4 {{isMobile?'':'margin-top-20'}}">
+                                    <div ng-show="!a.edit" class="address-list">
+                                        <p>姓 &nbsp;&nbsp;名：<span ng-bind="a.name"></span></p>
+                                        <p>电 &nbsp;&nbsp;话：<span ng-bind="a.phone"></span></p>
+                                        <p>地 &nbsp;&nbsp;址：<span ng-bind="a.state"></span> <span ng-bind="a.city"></span></p>
+                                        <p class="address-detail">详细地址：<span ng-bind="a.address"></span></p>
+                                        <p ng-show="a.primaryFlag == 1" class="color-change" style="position: absolute;top: 8px;right: 60px;font-size: 13px;">默认地址</p>
+                                        <button ng-click="editAddressClick(a)" class="glyphicon glyphicon-edit" style="position: absolute;top: 10px;right: 30px;border: none;background: none;color: rgb(193,55,47)"></button>
+                                        <button ng-click="deleteAddressClick(a.addressId)" class="glyphicon glyphicon-trash" style="position: absolute;top: 10px;right: 10px;border: none;background: none;color: rgb(193,55,47)"></button>
+                                        <button ng-click="useAddressClick(a.addressId)" class="bgcolor-change" style="position: absolute;bottom: 25px;right: 10px;height: 25px;line-height: 25px;border: #ccc;color: white;font-size: 13px">使 用</button>
+                                    </div>
+                                    <div ng-show="a.edit" class="address-list" style="padding-left: 20px;padding-top: 15px;padding-right: 20px">
+                                        <div class="row">
+                                            <div class="address-update">
+                                                <input id="name2" type="text" ng-model="a.name" placeholder="收件人姓名" class="form-control" required style="border: 1px solid #ccc;height: 25px">
+                                            </div>
+                                            <div class="address-update">
+                                                <input id="phone2" type="tel" ng-model="a.phone" placeholder="电话" class="form-control" required style="border: 1px solid #ccc;height: 25px">
+                                            </div>
+                                        </div>
+                                        <div class="row margin-top-10">
+                                            <div class="address-update">
+                                                <select id="province-u" class="" style="height: 25px;width: 100%;background-color: white;border: 1px solid #ccc;" ng-model="a.state" ng-change="changeProvince(a.state)">
+                                                    <option id="{{'opt-p'+$index}}" ng-repeat="p in provinceArr" value="{{p.name}}" ng-bind="p.name"></option>
+                                                </select>
+                                            </div>
+                                            <div class="address-update">
+                                                <select id="city-u" class="" style="height: 25px;width: 100%;background-color: white;border: 1px solid #ccc;" ng-model="a.city" >
+                                                    <option id="{{'opt-c'+$index}}" ng-repeat="c in nowCityArr" value="{{c.name}}" ng-bind="c.name"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <input id="shippingAddress" type="text" ng-model="a.address" placeholder="详细地址" class="margin-top-10 form-control" style="border: 1px solid #ccc;height: 25px;margin-top: 10px">
+                                        <input type="submit" value="保存修改" ng-click="saveUpdateClick(a)" style="background: #9c8061;border: none;width: 70px;height: 25px;color: white;margin-top: 10px;font-size: 13px;margin-left: 20%">
+                                        <input type="submit" value="关闭" ng-click="closeClick(a)" style="background: #9c8061;border: none;width: 70px;height: 25px;color: white;margin-top: 10px;font-size: 13px;margin-left: 20px">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 margin-top-20" style=";cursor: pointer"  ng-click="addAddress()">
+                                    <div class="address-list">
+                                        <p style="font-size: 50px;text-align: center;height: 60px">+</p>
+                                        <p style="font-size: 20px;text-align: center;height: 20px">添加新地址</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div ng-show="step == 3">
+                        <section>
+                            <div class="row">
+                                <div class="col-md-6 md-margin-bottom-50">
+                                    <h2 class="title-type">选择一个支付方式</h2>
+                                    <!-- Accordion -->
+                                    <div class="accordion-v2">
+                                        <div class="panel-group" id="accordion">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <div class="pay-dev" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                            <i class="fa fa-credit-card"></i>
+                                                            网上支付
+                                                        </div>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse in">
+                                                    <div class="panel-body cus-form-horizontal">
+                                                        <input id="aipay" type="radio" name="pay" value="1" checked> <span>支付宝支付</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <!--<input type="radio" name="pay" value="2"> <span>微信支付</span>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default" ng-show="showPayLater" >
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <div class="pay-dev" id="paylater-div" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                            <i class="fa fa-paypal"></i>
+                                                            货到付款(仅限本地商家配送）
+                                                        </div>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseTwo" class="panel-collapse collapse">
+                                                    <div class="panel-body cus-form-horizontal">
+                                                        <input id="paylater" type="radio" value="3" name="pay"> <span>货到付款(仅限本地商家配送）</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Accordion -->
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+
+
+                    <div class="coupon-code">
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-9">
+                                <ul class="list-inline total-result">
+                                    <li>
+                                        <h4>小计:</h4>
+                                        <div class="total-result-in">
+                                            <span>￥ <span ng-bind="subtotal"></span></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <h4>运费:</h4>
+                                        <div class="total-result-in">
+                                            <span class="text-right">￥ <span ng-bind="freight"></span>(满38元免运费)</span>
+
+                                        </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="total-price">
+                                        <h4>总计:</h4>
+                                        <div class="total-result-in">
+                                            <span>￥ <span ng-bind="total"></span></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12" ng-show="total>0">
+                        <div style="float: right;color: white">
+                            <button ng-show="step != 1"  class="step-btn bgcolor-change" ng-click="stepBack()" style="height: 35px;width: 120px;border: none">上一步</button>
+                            <button type="submit" class="step-btn bgcolor-change" ng-click="stepForward()" style="height: 35px;width: 120px;border: none">下一步</button> <!-- ng-if="findTotalPrice && sendOrderStep == 1"  sendOrderStep = sendOrderStep + 1-->
+                        </div>
+                    </div>
+                </form>
+            </div><!--/end container-->
+        </div>
+        <div ng-show="haveProduct == 0" style="width: 100%;height: 300px">
+            <p style="margin:0 auto;margin-top:100px;width:370px;font-size: 20px">购物车空空的哦~，去看看心仪的商品吧~</p>
+            <button style="margin:0 auto;width:100px;height:40px;margin-top:20px;display:block;font-size: 18px;" ng-click="goShopping()">去购物</button>
+        </div>
+        <div ng-show="showAddress" class="shade">
+        </div>
+        <div class="{{isMobile?'shade_content_mobile':'shade_content'}}" ng-show="showAddress">
+            <div class="header-address" style="height: 30px;background-color: rgb(240,240,240);border-bottom: 1px solid rgb(183,183,183)">
+                <span style="line-height: 30px;font-weight: 500;margin-left: 10px">添加收货地址</span>
+                <button ng-click="closeAddress()" class="btn btn-default" style="float: right;height: 30px">关闭</button>
+            </div>
+            <div class="container">
+                <form style="margin-top: 20px">
+                    <div class="consignee">
+                        <span style="color: red">*</span><span style="color: rgb(135,135,135)">收货人: </span><br/>
+                        <input class="{{isMobile?'add_address_mobile_input':'add_address_input'}}" type="text" ng-model="newName" required>
+                    </div>
+                   <div class="city" style="margin-top: 10px">
+                       <span style="color: red;">*</span><span style="color: rgb(135,135,135)">所在地区: </span><br/>
+                       <div style="margin-top: 10px">
+                           <select class="{{isMobile?'address-mobile-select':'address-select'}}" id="province">
+                               <option ng-repeat="p in provinceArr" value="{{$index}}">{{p.name}}</option>
+                           </select>
+                           <select class="{{isMobile?'address-mobile-select':'address-select'}}" style="margin-left: 15px" id="city">
+                               <option ng-repeat="c in cityArr" value="{{$index}}">{{c.name}}</option>
+                           </select>
+                           <!--<select id="area" style="margin-left: 15px">-->
+                               <!--<option ng-repeat="a in areaArr" value="{{$index}}">{{a}}</option>-->
+                           <!--</select>-->
+                       </div>
+                   </div>
+                    <div class="detailAddress" style="margin-top: 10px;">
+                        <span style="color: red;">*</span><span style="color: rgb(135,135,135)">详细地址: </span><br/>
+                        <input class="{{isMobile?'add_address_mobile_input':'add_address_input'}}" type="text" ng-model="newAddress" required>
+                    </div>
+                    <div class="telphone" style="margin-top: 10px">
+                        <span style="color: red;">*</span><span style="color: rgb(135,135,135)">手机号码: </span><br/>
+                        <input class="{{isMobile?'add_address_mobile_input':'add_address_input'}}" type="text" ng-model="newPhone" required>
+                    </div>
+                    <input type="submit" ng-click="saveAddressClick()" value="保存收货地址" style="border: 1px solid rgb(213,213,213);background-color: rgb(244,244,244);width: 110px;height: 30px;margin-top: 20px">
+                </form>
+            </div>
+        </div>
+        <!--=== End Content Medium Part ===-->
+    </div><!--/wrapper-->
+</div>

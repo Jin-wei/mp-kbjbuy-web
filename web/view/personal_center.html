@@ -1,0 +1,61 @@
+<div style="margin-bottom: 20px;font-size: 16px">
+    <div class="row" style="padding-left: 50px;padding-top: 20px;
+    padding-bottom:20px;border-bottom: 1px solid grey">
+        <img ng-src="jjc/assets/images/personal_icon.png" alt="头像" style="zoom: 0.5">
+        <sapn ng-show="isLogin">
+            <span class="userName">用户名:{{loginUserName}}</span>
+            <button class="btn-u leave-out" type="button" ng-click="logOut()" style="">退出</button>
+        </sapn>
+        <sapn ng-show="!isLogin">
+            <span class="userName">请登录!</span>
+            <a class="btn-u leave-out" type="button" href="indexApp.html#/login?whereCome=personal_center">登录</a>
+            <div style="margin-left: 90px">
+                <span class="noAccount">还没有账号吗?了解更多并</span>
+                <a href="indexApp.html#/register" style="color: red">注册</a>
+            </div>
+        </sapn>
+
+    </div>
+    <div class="row" style="border-bottom: 1px dashed grey;padding-left: 50px;padding-top: 20px;
+    padding-bottom: 20px">
+        <a href="indexApp.html#/my_orders">
+            <img ng-src="jjc/assets/images/personal_order.png" style="zoom: 0.35">
+            <span>我的订单</span>
+        </a>
+    </div>
+    <div class="row" style="border-bottom: 1px dashed grey;padding-left: 50px;padding-top: 20px;
+    padding-bottom: 20px">
+        <a href="indexApp.html#/my_collections">
+            <img ng-src="jjc/assets/images/personal_collection.png" style="zoom: 0.4">
+            <span>我的收藏</span>
+        </a>
+    </div>
+    <div class="row" style="border-bottom: 1px dashed grey;padding-left: 50px;padding-top: 20px;
+    padding-bottom: 20px">
+        <a href="">
+            <img ng-src="jjc/assets/images/personal_score.png" style="zoom: 0.5">
+            <span>我的积分</span>
+        </a>
+    </div>
+    <div class="row" style="border-bottom: 1px dashed grey;padding-left: 50px;padding-top: 20px;
+    padding-bottom: 20px">
+        <a href="">
+            <img ng-src="jjc/assets/images/personal_complain.png" style="zoom: 0.5">
+            <span>我的投诉</span>
+        </a>
+    </div>
+    <div class="row" style="border-bottom: 1px dashed grey;padding-left: 50px;padding-top: 20px;
+    padding-bottom: 20px">
+        <a href="">
+            <img ng-src="jjc/assets/images/personal_setting.png" style="zoom: 0.45">
+            <span>账号设置</span>
+        </a>
+    </div>
+    <div class="row" style="border-bottom: 1px dashed grey;padding-left: 50px;padding-top: 20px;
+    padding-bottom: 20px">
+        <a href="indexApp.html#/changePhone">
+            <img ng-src="jjc/assets/images/personal_setting.png" style="zoom: 0.45">
+            <span>修改手机号</span>
+        </a>
+    </div>
+</div>
